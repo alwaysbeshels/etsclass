@@ -10,9 +10,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
-          </p>
+        </p>
             <p>
-                Note de Shelsea: Ceci est seulement l'installation. Aucun code n'a ete commence.
+                Un essaie par  <code>Shelsea</code>. Ne pas effacer.
             </p>
           <a
             className="App-link"
