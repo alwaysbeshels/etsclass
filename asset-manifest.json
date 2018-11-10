@@ -1,7 +1,7 @@
 {
   "main.css": "/LOG515_FrontEnd/static/css/main.86ef6037.chunk.css",
-  "main.js": "/LOG515_FrontEnd/static/js/main.4d15d34c.chunk.js",
-  "main.js.map": "/LOG515_FrontEnd/static/js/main.4d15d34c.chunk.js.map",
+  "main.js": "/LOG515_FrontEnd/static/js/main.8a873adc.chunk.js",
+  "main.js.map": "/LOG515_FrontEnd/static/js/main.8a873adc.chunk.js.map",
   "static/js/1.1a2fe23b.chunk.js": "/LOG515_FrontEnd/static/js/1.1a2fe23b.chunk.js",
   "static/js/1.1a2fe23b.chunk.js.map": "/LOG515_FrontEnd/static/js/1.1a2fe23b.chunk.js.map",
   "runtime~main.js": "/LOG515_FrontEnd/static/js/runtime~main.4dd3f1cf.js",
@@ -9,6 +9,6 @@
   "static/media/logo.svg": "/LOG515_FrontEnd/static/media/logo.5d5d9eef.svg",
   "static/css/main.86ef6037.chunk.css.map": "/LOG515_FrontEnd/static/css/main.86ef6037.chunk.css.map",
   "index.html": "/LOG515_FrontEnd/index.html",
-  "precache-manifest.974de5db1f66f1eac719a6a3c403dad3.js": "/LOG515_FrontEnd/precache-manifest.974de5db1f66f1eac719a6a3c403dad3.js",
+  "precache-manifest.d6d60350d89fab48bd016c13d25f5bd9.js": "/LOG515_FrontEnd/precache-manifest.d6d60350d89fab48bd016c13d25f5bd9.js",
   "service-worker.js": "/LOG515_FrontEnd/service-worker.js"
 }
