@@ -1,5 +1,8 @@
 ## Live Preview
-Here's the link for the online version : https://alwaysbeshels.github.io/LOG515_FrontEnd/
+Le lien vers la version en ligne: https://alwaysbeshels.github.io/LOG515_FrontEnd/
+#
+### `npm run deploy`
+Utiliser cette commande pour pouvoir deployer l'aplication pour le live preview.
 #
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
