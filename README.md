@@ -4,6 +4,10 @@ Le lien vers la version en ligne: https://alwaysbeshels.github.io/LOG515_FrontEn
 ### `npm run deploy`
 Utiliser cette commande pour pouvoir deployer l'aplication pour le live preview.
 #
+Documentation de le template Visuel utilisee : https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial
+# React Table Documentation : 
+Github : https://github.com/react-tools/react-table#installation
+Documentation : https://react-table.js.org/#/story/readme
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

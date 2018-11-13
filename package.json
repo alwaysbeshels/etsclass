@@ -6,9 +6,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
+    "material-dashboard-react": "^1.5.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
+    "react-table": "^6.8.6",
     "redux": "^4.0.1"
   },
   "scripts": {
