@@ -7,17 +7,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Money from "@material-ui/icons/Money";
 import Accessibility from "@material-ui/icons/Accessibility";
 // core components
-import GridItem from "../../components/Grid/GridItem.jsx";
-import GridContainer from "../../components/Grid/GridContainer.jsx";
-import Card from "../../components/Card/Card.jsx";
-import CardHeader from "../../components/Card/CardHeader.jsx";
-import CardIcon from "../../components/Card/CardIcon.jsx";
-import CardBody from "../../components/Card/CardBody.jsx";
-import CardFooter from "../../components/Card/CardFooter.jsx";
+import GridItem from "../components/Grid/GridItem.jsx";
+import GridContainer from "../components/Grid/GridContainer.jsx";
+import Card from "../components/Card/Card.jsx";
+import CardHeader from "../components/Card/CardHeader.jsx";
+import CardIcon from "../components/Card/CardIcon.jsx";
+import CardBody from "../components/Card/CardBody.jsx";
+import CardFooter from "../components/Card/CardFooter.jsx";
 
-import dashboardStyle from "../../assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+import dashboardStyle from "../assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
-class Dashboard extends React.Component {
+class Index extends React.Component {
   state = {
     value: 0
   };
@@ -169,8 +169,8 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
+Index.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(dashboardStyle)(Dashboard);
+export default withStyles(dashboardStyle)(Index);

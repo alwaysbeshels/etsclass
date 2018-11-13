@@ -8,20 +8,20 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Header from "../../components/Header/Header.jsx";
-import Footer from "../../components/Footer/Footer.jsx";
-import Sidebar from "../../components/Sidebar/Sidebar.jsx";
+import Header from "../components/Header/Header.jsx";
+import Footer from "../components/Footer/Footer.jsx";
+import Sidebar from "../components/Sidebar/Sidebar.jsx";
 
-import dashboardRoutes from "../../routes/dashboard.jsx";
+import indexRoutes from "../routes/dashboard.jsx";
 
-import dashboardStyle from "../../assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
+import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 
-import image from "../../assets/img/sidebar-2.jpg";
-import logo from "../../assets/img/reactlogo.png";
+import image from "../assets/img/sidebar-4.jpg";
+import logo from "../assets/img/reactlogo.png";
 
 const switchRoutes = (
   <Switch>
-    {dashboardRoutes.map((prop, key) => {
+    {indexRoutes.map((prop, key) => {
       if (prop.redirect)
         return <Redirect from={prop.path} to={prop.to} key={key} />;
       return <Route path={prop.path} component={prop.component} key={key} />;
@@ -70,7 +70,7 @@ class App extends React.Component {
     return (
       <div className={classes.wrapper}>
         <Sidebar
-          routes={dashboardRoutes}
+          routes={indexRoutes}
           logoText={"Jé L'Doua D'Entré"}
           logo={logo}
           image={image}
@@ -81,7 +81,7 @@ class App extends React.Component {
         />
         <div className={classes.mainPanel} ref="mainPanel">
           <Header
-            routes={dashboardRoutes}
+            routes={indexRoutes}
             handleDrawerToggle={this.handleDrawerToggle}
             {...rest}
           />
