@@ -71,11 +71,11 @@ class Index extends React.Component {
               <GridItem xs={12} sm={12} md={12}>
                   <Card chart>
                       <CardHeader color="primary">
-                          <h2 className={classes.cardTitleWhite}>Quel est le problème?</h2>
+                          <h3 className={classes.cardTitleWhite}>Quel est le problème?</h3>
                       </CardHeader>
                       <CardBody>
                           <div>
-                              <h4>
+                              <p>
                                   Le manque d’espace pour les étudiants de l’université de l’ÉTS est flagrant.
                                   Avec les événements promotionnels qui ont lieu dans l’université, les présentations
                                   des clubs étudiants ainsi que le taux d’occupation élevé des classes, il ne reste
@@ -94,7 +94,7 @@ class Index extends React.Component {
                                   un local disponible, par exemple, pour les laboratoires, certains ont besoin d'être
                                   dans un local précis sur un poste particulier.
 
-                              </h4>
+                              </p>
                           </div>
                       </CardBody>
                   </Card>
@@ -104,16 +104,16 @@ class Index extends React.Component {
               <GridItem xs={12} sm={12} md={12}>
                   <Card chart>
                       <CardHeader color="warning">
-                          <h2 className={classes.cardTitleWhite}>Présentation du Projet : Jé l'Doua D'entré</h2>
+                          <h3 className={classes.cardTitleWhite}>Présentation du Projet : Jé l'Doua D'entré</h3>
                       </CardHeader>
                       <CardBody>
                           <div>
-                              <h4>Ce projet permettra à quiconque s’aventurant dans les locaux de l’École de
+                              <p>Ce projet permettra à quiconque s’aventurant dans les locaux de l’École de
                                   Technologie Supérieure de savoir quels locaux, de cours ou de laboratoire,
                                   n’ont actuellement aucun cours. Il sera possible d’obtenir des informations
                                   sur un local spécifique, comme leur plage horaire par exemple, mais aussi
                                   d’obtenir une liste de tous les locaux libres dans un bâtiment ou sur un étage.
-                              </h4>
+                              </p>
                           </div>
                       </CardBody>
                   </Card>
@@ -123,41 +123,41 @@ class Index extends React.Component {
               <GridItem xs={12} sm={12} md={12}>
                   <Card chart>
                       <CardHeader color="danger">
-                          <h2 className={classes.cardTitleWhite}>Présentation de l'équipe</h2>
+                          <h3 className={classes.cardTitleWhite}>Présentation de l'équipe</h3>
                       </CardHeader>
                       <CardBody>
                           <div className={classes.typo}>
                               <div className={classes.note}>Shelsea Saint-Fleur</div>
-                              <h5>
+                              <p>
                                   Shelsea à 3 rôles dans notre équipe. Elle est la gestionnaire de projet, experte de
                                   la matière et une de nos testeurs du projet. Elle comprend bien les besoins du projet et
                                 a permis de bien définir les objectifs de celui-ci.
-                              </h5>
+                              </p>
                           </div>
                           <div className={classes.typo}>
                               <div className={classes.note}>Mensur Rasic</div>
-                              <h5>
+                              <p>
                                   Mensur à 3 rôles dans notre équipe. Il est le gestionnaire de projet, un développeur
                                   et un de nos testeurs. Il nous a permis de bien définir les livrables réalisables du
                                 projet et de les communiquer clairement à toute l'équipe.
-                              </h5>
+                              </p>
                           </div>
                           <div className={classes.typo}>
                               <div className={classes.note}>Kevin Duvignau</div>
-                              <h5>
+                              <p>
                                   Kevin à 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
                                   développement, le représentant de notre équipe et un développeur. Il a été la
                                 personne ressource pour communiquer avec les parties prenantes, soit les étudiants de
                                 l'École de Technologies Supérieures.
-                              </h5>
+                              </p>
                           </div>
                           <div className={classes.typo}>
                               <div className={classes.note}>Cristian Feisan</div>
-                              <h5>
+                              <p>
                                   Cristian à 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
                                   test, l'analyste des activités et un développeur. Il s'est assuré du bon
                                   déroulement du projet.
-                              </h5>
+                              </p>
                           </div>
 
                       </CardBody>
