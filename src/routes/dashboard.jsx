@@ -7,21 +7,21 @@ import ClassesPage from "../views/class.jsx";
 
 const indexRoutes = [
     {
-        path: "/LOG515_FrontEnd/index",
+        path: "/index",
         sidebarName: "Dashboard",
         navbarName: "Jé L'Doua D'Entré",
         icon: Dashboard,
         component: DashboardPage
     },
     {
-        path: "/LOG515_FrontEnd/class",
+        path: "/class",
         sidebarName: "Classes",
         navbarName: "Jé L'Doua D'Entré",
         icon: Alarm,
         component: ClassesPage
     },
-    {redirect: true, path: "/LOG515_FrontEnd/", to: "/LOG515_FrontEnd/index", navbarName: "Redirect"},
-    {redirect: true, path: "/LOG515_FrontEnd/class", to: "/LOG515_FrontEnd/class", navbarName: "Redirect"}
+    {redirect: true, path: "/", to: "/index", navbarName: "Redirect"},
+    {redirect: true, path: "/class", to: "/class", navbarName: "Redirect"}
 ];
 
 export default indexRoutes;
