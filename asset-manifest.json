@@ -1,16 +1,16 @@
 {
   "main.css": "/LOG515_FrontEnd/static/css/main.c04e8092.chunk.css",
-  "main.js": "/LOG515_FrontEnd/static/js/main.24963bfd.chunk.js",
-  "main.js.map": "/LOG515_FrontEnd/static/js/main.24963bfd.chunk.js.map",
+  "main.js": "/LOG515_FrontEnd/static/js/main.471fb3e8.chunk.js",
+  "main.js.map": "/LOG515_FrontEnd/static/js/main.471fb3e8.chunk.js.map",
   "static/css/1.978a5d35.chunk.css": "/LOG515_FrontEnd/static/css/1.978a5d35.chunk.css",
   "static/js/1.a479cdfc.chunk.js": "/LOG515_FrontEnd/static/js/1.a479cdfc.chunk.js",
   "static/js/1.a479cdfc.chunk.js.map": "/LOG515_FrontEnd/static/js/1.a479cdfc.chunk.js.map",
   "runtime~main.js": "/LOG515_FrontEnd/static/js/runtime~main.4dd3f1cf.js",
   "runtime~main.js.map": "/LOG515_FrontEnd/static/js/runtime~main.4dd3f1cf.js.map",
   "static/media/sidebar-4.jpg": "/LOG515_FrontEnd/static/media/sidebar-4.fc9cb053.jpg",
-  "static/css/main.c04e8092.chunk.css.map": "/LOG515_FrontEnd/static/css/main.c04e8092.chunk.css.map",
   "static/css/1.978a5d35.chunk.css.map": "/LOG515_FrontEnd/static/css/1.978a5d35.chunk.css.map",
+  "static/css/main.c04e8092.chunk.css.map": "/LOG515_FrontEnd/static/css/main.c04e8092.chunk.css.map",
   "index.html": "/LOG515_FrontEnd/index.html",
-  "precache-manifest.06f800ca6b2fd437272c836d870d75ee.js": "/LOG515_FrontEnd/precache-manifest.06f800ca6b2fd437272c836d870d75ee.js",
+  "precache-manifest.2fba6b3c728c384ec56b6b398931acf4.js": "/LOG515_FrontEnd/precache-manifest.2fba6b3c728c384ec56b6b398931acf4.js",
   "service-worker.js": "/LOG515_FrontEnd/service-worker.js"
 }
