@@ -31,9 +31,9 @@ function SnackbarContent({ ...props }) {
   return (
     <Snack
       message={
-        <div>
+        <div style={{textAlign: "center"}}>
           {icon !== undefined ? <props.icon className={classes.icon} /> : null}
-          <span className={messageClasses}>{message}</span>
+          <span className={messageClasses} style={{textAlign: "center"}}>{message}</span>
         </div>
       }
       classes={{

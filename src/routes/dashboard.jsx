@@ -1,27 +1,37 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
-import Alarm from "@material-ui/icons/Alarm";
+import FilterBAndW from "@material-ui/icons/FilterBAndW";
+import Alarmoff from "@material-ui/icons/AlarmOff";
 // core components/views
 import DashboardPage from "../views/index.jsx";
 import ClassesPage from "../views/class.jsx";
+import ClassInfoPage from "../views/classInfo.jsx";
 
 const indexRoutes = [
     {
         path: "/index",
         sidebarName: "Dashboard",
-        navbarName: "Jé L'Doua D'Entré",
+        navbarName: "Jé L'Doua Dentré",
         icon: Dashboard,
         component: DashboardPage
     },
     {
         path: "/class",
         sidebarName: "Classes",
-        navbarName: "Jé L'Doua D'Entré",
-        icon: Alarm,
+        navbarName: "Jé L'Doua Dentré",
+        icon: FilterBAndW,
         component: ClassesPage
     },
-    {redirect: true, path: "/", to: "/index", navbarName: "Redirect"},
-    {redirect: true, path: "/class", to: "/class", navbarName: "Redirect"}
+    {
+        path: "/InfoClass",
+        sidebarName: "Class Info",
+        navbarName: "Jé L'Doua Dentré",
+        icon: Alarmoff,
+        component: ClassInfoPage
+    },
+    {redirect: true, path: "/", to: "/index"},
+    {redirect: true, path: "/class", to: "/class"},
+    {redirect: true, path: "/classInfo", to: "/classInfo"}
 ];
 
 export default indexRoutes;

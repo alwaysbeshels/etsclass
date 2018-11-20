@@ -6,6 +6,7 @@ import {
   infoColor,
   roseColor,
   grayColor,
+  blackColor,
   defaultFont
 } from "../../../../assets/jss/material-dashboard-react.jsx";
 
@@ -31,28 +32,33 @@ const tableStyle = theme => ({
   grayTableHeader: {
     color: grayColor
   },
+  blackTableHeader: {
+      color: blackColor
+  },
   table: {
     marginBottom: "0",
     width: "100%",
     maxWidth: "100%",
     backgroundColor: "transparent",
     borderSpacing: "0",
-    borderCollapse: "collapse"
+    borderCollapse: "collapse",
+      textAlign: "center"
   },
   tableHeadCell: {
     color: "inherit",
     ...defaultFont,
-    fontSize: "1em"
+    fontSize: "1em",
+      textColor: "black"
   },
   tableCell: {
     ...defaultFont,
     lineHeight: "1.42857143",
     padding: "12px 8px",
-    verticalAlign: "middle"
+    verticalAlign: "middle",
   },
   tableResponsive: {
     width: "100%",
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 1,
     overflowX: "auto"
   }
 });

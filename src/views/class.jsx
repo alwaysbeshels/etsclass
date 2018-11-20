@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridItem from "../components/Grid/GridItem.jsx";
 import GridContainer from "../components/Grid/GridContainer.jsx";
-import Table from "../components/Table/Table.jsx";
+import Table from "../components/Table/TableAllClasses.jsx";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -39,14 +39,27 @@ const styles = {
     }
 };
 
-function TableList(props) {
+function ClassList(props) {
     const { classes } = props;
+    const timeNow = new Date();
+    const heureMidi = new Date().setHours(12, 0,0),
+        heureSoir = new Date().setHours(17, 0,0);
+    let timeDay = "";
+    if (timeNow < heureMidi)
+        timeDay = "Matin";
+    else if (timeNow > heureMidi && timeNow < heureSoir)
+        timeDay = "Après-Midi";
+    else
+        timeDay = "Soir";
+
     return (
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <Card>
                     <CardHeader color="info">
-                        <h4 className={classes.cardTitleWhite}>Liste de toutes les classes disponibles</h4>
+                        <h3 className={classes.cardTitleWhite}>
+                            Liste de toutes les classes disponibles <b>aujourd'hui</b>
+                            <br /> Période actuelle : <b>{timeDay}</b></h3>
                         <p className={classes.cardCategoryWhite}>
                             Prendre note que tous les locaux de l'École de Technologies Supérieures ne sont pas
                             forcément dans cette liste et que nous ne pouvons garantir que les horaires ci-dessous
@@ -54,8 +67,9 @@ function TableList(props) {
                         </p>
                     </CardHeader>
                     <CardBody>
-                        <Table
-                        />
+                        <GridContainer>
+                        <Table/>
+                        </GridContainer>
                     </CardBody>
                 </Card>
             </GridItem>
@@ -63,4 +77,4 @@ function TableList(props) {
     );
 }
 
-export default withStyles(styles)(TableList);
+export default withStyles(styles)(ClassList);

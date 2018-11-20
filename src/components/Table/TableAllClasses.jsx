@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
+
 let counter = 0;
 
 function createData(numero, batiment, etage, matin, apresmidi, soir) {
@@ -48,7 +49,7 @@ const rows = [
     {id: 'batiment', disablePadding: true, label: 'Batiment'},
     {id: 'etage', disablePadding: true, label: 'Étage'},
     {id: 'matin', disablePadding: true, label: 'Matin'},
-    {id: 'apresmidi',  disablePadding: true, label: 'Après-Midi'},
+    {id: 'apresmidi', disablePadding: true, label: 'Après-Midi'},
     {id: 'soir', disablePadding: true, label: 'Soir'},
 ];
 
@@ -72,7 +73,7 @@ class EnhancedTableHead extends React.Component {
                                 sortDirection={orderBy === row.id ? order : false}
                             >
                                 <Tooltip
-                                    title="Sort"
+                                    title="Ascendant / Descendant"
                                     placement={row.numeric ? 'bottom-end' : 'bottom-start'}
                                     enterDelay={300}
                                 >
@@ -107,15 +108,26 @@ class EnhancedTable extends React.Component {
         order: 'asc',
         orderBy: 'numero',
         selected: [],
+        // TODO : Changer ici pour integration backend
         data: [
-            createData("A2241", "A", "2e", "Disponible", "Non Disponible", "Disponible"),
-        createData("A2241", "A", "2e", "Disponible", "Non Disponible", "Disponible"),
-    createData("B4241", "B", "4e", "Non Disponible", "Non Disponible", " Non Disponible"),
-    createData("B1141", "B", "1e", "Disponible", "Non Disponible", "Disponible"),
-    createData("A1536", "A", "1e", "Non Disponible", "Non Disponible", "Disponible"),
+            createData("A2241", "A", "2e", "Libre", "Occupé", "Libre"),
+            createData("A2546", "A", "2e", "Libre", "Libre", "Libre"),
+            createData("B4241", "B", "4e", "Occupé", "Occupé", " Non Libre"),
+            createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
+            createData("E4236", "E", "4e", "Occupé", "Occupé", "Occupé"),
+            createData("A4241", "A", "3e", "Libre", "Occupé", "Libre"),
+            createData("E3241", "E", "3e", "Libre", "Libre", "Libre"),
+            createData("B3251", "B", "3e", "Occupé", "Libre", " Non Libre"),
+            createData("E2141", "E", "2e", "Libre", "Occupé", "Libre"),
+            createData("A1536", "A", "1e", "Occupé", "Occupé", "Libre"),
+            createData("A4241", "A", "4e", "Libre", "Occupé", "Libre"),
+            createData("A3241", "A", "3e", "Libre", "Libre", "Occupé"),
+            createData("E2241", "E", "2e", "Occupé", "Occupé", " Non Libre"),
+            createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
+            createData("A3536", "A", "3e", "Occupé", "Occupé", "Libre")
         ],
         page: 0,
-        rowsPerPage: 3,
+        rowsPerPage: 10,
     };
 
     handleRequestSort = (event, property) => {
@@ -145,14 +157,15 @@ class EnhancedTable extends React.Component {
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
+            <div className={classes.tableResponsive}>
+
             <Paper className={classes.root}>
-                <div className={classes.tableWrapper}>
+                <div>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
                             numSelected={selected.length}
                             order={order}
                             orderBy={orderBy}
-                            onSelectAllClick={this.handleSelectAllClick}
                             onRequestSort={this.handleRequestSort}
                             rowCount={data.length}
                         />
@@ -172,11 +185,11 @@ class EnhancedTable extends React.Component {
                                             <TableCell component="th" scope="row" padding="default">
                                                 {n.numero}
                                             </TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{n.batiment}</TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{n.etage}</TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{n.matin}</TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{n.apresmidi}</TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{n.soir}</TableCell>
+                                            <TableCell component="th" scope="row">{n.batiment}</TableCell>
+                                            <TableCell component="th" scope="row" >{n.etage}</TableCell>
+                                            <TableCell component="th" scope="row" >{n.matin}</TableCell>
+                                            <TableCell component="th" scope="row" >{n.apresmidi}</TableCell>
+                                            <TableCell component="th" scope="row" >{n.soir}</TableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -204,6 +217,7 @@ class EnhancedTable extends React.Component {
                     onChangeRowsPerPage={this.handleChangeRowsPerPage}
                 />
             </Paper>
+            </div>
         );
     }
 }

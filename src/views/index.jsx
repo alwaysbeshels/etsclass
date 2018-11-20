@@ -91,7 +91,7 @@ class Index extends React.Component {
                                   La seule façon de se trouver un local, c’est de se déplacer physiquement dans l’école,
                                   mais cela ne garantit pas qu’il n’y aura pas un cours plus tard dans la journée.
                                   Cela augmente considérablement la perte de temps des universitaires pour se trouver
-                                  un local disponible, par exemple, pour les laboratoires, certains ont besoin d'être
+                                  un local libre, par exemple, pour les laboratoires, certains ont besoin d'être
                                   dans un local précis sur un poste particulier.
 
                               </p>
@@ -104,7 +104,7 @@ class Index extends React.Component {
               <GridItem xs={12} sm={12} md={12}>
                   <Card chart>
                       <CardHeader color="warning">
-                          <h3 className={classes.cardTitleWhite}>Présentation du Projet : Jé l'Doua D'entré</h3>
+                          <h3 className={classes.cardTitleWhite}>Présentation du Projet : Jé l'Doua Dentré</h3>
                       </CardHeader>
                       <CardBody>
                           <div>
