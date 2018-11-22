@@ -69,7 +69,7 @@ const Sidebar = ({ ...props }) => {
   );
   var brand = (
     <div className={classes.logo}>
-      <a href="https://alwaysbeshels.github.io/LOG515_FrontEnd" className={classes.logoLink}>
+      <a href={'#/index'} className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
         </div>

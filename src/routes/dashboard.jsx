@@ -31,7 +31,7 @@ const indexRoutes = [
     },
     {redirect: true, path: "/", to: "/index"},
     {redirect: true, path: "/class", to: "/class"},
-    {redirect: true, path: "/classInfo", to: "/classInfo"}
+    {redirect: true, path: "/InfoClass", to: "/InfoClass"}
 ];
 
 export default indexRoutes;

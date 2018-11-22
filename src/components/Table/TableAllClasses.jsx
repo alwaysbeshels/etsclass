@@ -112,17 +112,17 @@ class EnhancedTable extends React.Component {
         data: [
             createData("A2241", "A", "2e", "Libre", "Occupé", "Libre"),
             createData("A2546", "A", "2e", "Libre", "Libre", "Libre"),
-            createData("B4241", "B", "4e", "Occupé", "Occupé", " Non Libre"),
+            createData("B4241", "B", "4e", "Occupé", "Occupé", "Occupé"),
             createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
             createData("E4236", "E", "4e", "Occupé", "Occupé", "Occupé"),
             createData("A4241", "A", "3e", "Libre", "Occupé", "Libre"),
             createData("E3241", "E", "3e", "Libre", "Libre", "Libre"),
-            createData("B3251", "B", "3e", "Occupé", "Libre", " Non Libre"),
+            createData("B3251", "B", "3e", "Occupé", "Libre", " Occupé"),
             createData("E2141", "E", "2e", "Libre", "Occupé", "Libre"),
             createData("A1536", "A", "1e", "Occupé", "Occupé", "Libre"),
             createData("A4241", "A", "4e", "Libre", "Occupé", "Libre"),
             createData("A3241", "A", "3e", "Libre", "Libre", "Occupé"),
-            createData("E2241", "E", "2e", "Occupé", "Occupé", " Non Libre"),
+            createData("E2241", "E", "2e", "Occupé", "Occupé", "Occupé"),
             createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
             createData("A3536", "A", "3e", "Occupé", "Occupé", "Libre")
         ],
@@ -182,8 +182,9 @@ class EnhancedTable extends React.Component {
                                             key={n.id}
                                             selected={isSelected}
                                         >
-                                            <TableCell component="th" scope="row" padding="default">
-                                                {n.numero}
+                                            <TableCell  component="th" scope="row" padding="default">
+                                               <a href={`#/class/${n.numero}`}
+                                                  style={{color: '#00acc1', textDecoration: "underline"}}>{n.numero}</a>
                                             </TableCell>
                                             <TableCell component="th" scope="row">{n.batiment}</TableCell>
                                             <TableCell component="th" scope="row" >{n.etage}</TableCell>

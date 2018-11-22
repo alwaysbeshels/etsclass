@@ -1,0 +1,1 @@
+export const GET_CLASS = "GET_CLASS";
