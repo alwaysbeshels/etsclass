@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
+import TextField from '@material-ui/core/TextField';
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
 
@@ -128,6 +129,7 @@ class EnhancedTable extends React.Component {
         ],
         page: 0,
         rowsPerPage: 10,
+        search: ''
     };
 
     handleRequestSort = (event, property) => {
@@ -155,10 +157,21 @@ class EnhancedTable extends React.Component {
         const {classes} = this.props;
         const {data, order, orderBy, selected, rowsPerPage, page} = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+        
+        var dataFilter = this.state.data.filter(
+            (result) => {
+                return result.numero.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            }
+        );
 
         return (
             <div className={classes.tableResponsive}>
-
+                <TextField
+                    
+                    placeholder="Rechercher par numéro"
+                    value={this.state.search}
+                    onChange={(event) => this.setState({search: event.target.value})}
+                />
             <Paper className={classes.root}>
                 <div>
                     <Table className={classes.table} aria-labelledby="tableTitle">
@@ -170,7 +183,7 @@ class EnhancedTable extends React.Component {
                             rowCount={data.length}
                         />
                         <TableBody>
-                            {stableSort(data, getSorting(order, orderBy))
+                            {stableSort(dataFilter, getSorting(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(n => {
                                     const isSelected = this.isSelected(n.id);
