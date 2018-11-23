@@ -21,8 +21,9 @@ import dashboardStyle from "../assets/jss/material-dashboard-react/views/dashboa
 
 function ClassInfoPage(props) {
     const {classes} = props;
+    //TODO appeler le back end pour récupérer les informations d'un local à partir de son numéro
     const infoClass = {
-        numero: "A2241", batiment: "A", etage: "2e",
+        numero: props.match.params.numero, batiment: "A", etage: "2e",
         horaire: [
             {heureDebut: "8:30:00", heureFin: "12:00:00", journee: "Monday"},
             {heureDebut: "13:00:00", heureFin: "17:30:00", journee: "Monday"},
