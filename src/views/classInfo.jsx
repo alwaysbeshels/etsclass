@@ -48,7 +48,7 @@ function ClassInfoPage(props) {
         const separateTimeDebut = current_value.heureDebut.split(":"), separateTimeFin = current_value.heureFin.split(":");
         const heureDebut = new Date().setHours(separateTimeDebut[0], separateTimeDebut[1],separateTimeDebut[2]),
             heureFin = new Date().setHours(separateTimeFin[0], separateTimeFin[1], separateTimeFin[2]);
-        if (heureDebut < timeNow.getTime() && heureFin > timeNow.getTime())
+        if (heureDebut > timeNow.getTime() && heureFin < timeNow.getTime())
             estDispo = false;
     });
 

@@ -1,7 +1,6 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import FilterBAndW from "@material-ui/icons/FilterBAndW";
-import Alarmoff from "@material-ui/icons/AlarmOff";
 // core components/views
 import DashboardPage from "../views/index.jsx";
 import ClassesPage from "../views/class.jsx";
