@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -11,10 +12,13 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
+import Search from "@material-ui/icons/Search";
+
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import SnackbarContent from "../../components/Snackbar/SnackbarContent.jsx";
-import axios from "axios";
+// core components
+import Button from "../../components/CustomButtons/Button.jsx";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -48,6 +52,26 @@ const rows = [
     {id: 'afternoonSchedule', disablePadding: true, label: 'Après-Midi'},
     {id: 'EveningSchedule', disablePadding: true, label: 'Soir'},
 ];
+
+const hashmapCodeMessage = {
+    "C" : "Congé Férié! Aujourd'hui est une journée férié, ainsi tous les locaux sont disponibles.",
+    "R" : "Relâche! Aujourd'hui est une journée de congé, ainsi tous les locaux sont disponibles.",
+    "F" : "AVERTISSEMENT! Nous sommes présentement en période d'examen. Il nous est impossiblem pour le moment, de " +
+        "connaître les locaux occupés du campus. Par conséquent, nous ne pouvons garantir que les horaires" +
+        " ci-dessous sont exactes.",
+    "P" : "AVERTISSEMENT! Aujourd'hui est enseigné comme un "
+};
+
+const weekdays = {
+    "Dim" : "Dimanche",
+    "Lun" : "Lundi",
+    "Mar" : "Mardi",
+    "Mer" : "Mercredi",
+    "Jeu" : "Jeudi",
+    "Ven" : "Vendredi",
+    "Sam" : "Samedi"
+};
+
 
 class EnhancedTableHead extends React.Component {
     createSortHandler = property => event => {
@@ -117,7 +141,8 @@ class EnhancedTable extends React.Component {
             .then(response => {
                 this.setState({
                     data: response.data,
-                    classrooms: response.data.classrooms
+                    classrooms: response.data.classrooms,
+                    code: response.data.code
                 });
             }).catch(function (error) {
             console.log(error);
@@ -150,22 +175,41 @@ class EnhancedTable extends React.Component {
         const {order, orderBy, selected, rowsPerPage, page} = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.state.classrooms.length - page * rowsPerPage);
         const timeNow = new Date();
-        const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-        let dayName = weekday[timeNow.getDay()];
-
+        let dayName = (weekdays.hasOwnProperty(this.state.code)) ? this.state.code : Object.keys(weekdays)[timeNow.getDay()];
         var dataFilter = this.state.classrooms.filter(
             (result) => {
+                console.log(this.state.search);
                 return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             }
         );
         return (
             <div className={classes.tableResponsive}>
-                <TextField
-
-                    placeholder="Rechercher par numéro"
+                { (this.state.code !== null && !weekdays.hasOwnProperty(this.state.code)) &&
+                <SnackbarContent
+                    message={hashmapCodeMessage[this.state.code] + ""}
+                    color={(this.state.code === "R" || this.state.code==="C") ? "primary" : "danger"}
+                />
+                }
+                { (weekdays.hasOwnProperty(this.state.code)) &&
+                <SnackbarContent
+                    message={hashmapCodeMessage["P"] + weekdays[this.state.code]}
+                    color={"warning"}
+                />
+                }
+                <div className={classes.searchWrapper} >
+                    <TextField
+                        className={classes.margin + " " + classes.search}
+                        style={{minWidth:"20em", margin:"0.5em"}}
+                        placeholder="Rechercher par numéro"
                     value={this.state.search}
                     onChange={(event) => this.setState({search: event.target.value})}
-                />
+                    />
+                    <Button
+                        color="white" aria-label="edit"
+                        justIcon round disabled style={{marginLeft:"-1.5em"}} >
+                        <Search  />
+                    </Button>
+                </div>
             <Paper className={classes.root}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -196,17 +240,17 @@ class EnhancedTable extends React.Component {
                                             <TableCell component="th" scope="row" >{n.floor}</TableCell>
                                             <TableCell component="th" scope="row" id={"morningSchedule"}>
                                                 <SnackbarContent
-                                                message={!n.schedule[dayName].includes(1) ? "Libre" : "Occupé"}
+                                                message={!n.schedule[dayName].includes(1) ? "Libre  " : "Occupé"}
                                                 color={!n.schedule[dayName].includes(1) ? "success" : "danger"}
                                             /></TableCell>
                                             <TableCell component="th" scope="row" id={"afternoonSchedule"}>
                                                 <SnackbarContent
-                                                message={!n.schedule[dayName].includes(2) ? "Libre" : "Occupé"}
+                                                message={!n.schedule[dayName].includes(2) ? "Libre  " : "Occupé"}
                                                 color={!n.schedule[dayName].includes(2) ? "success" : "danger"}
                                             /></TableCell>
                                             <TableCell component="th" scope="row" id={"eveningSchedule"}>
                                                 <SnackbarContent
-                                                message={!n.schedule[dayName].includes(3) ? "Libre" : "Occupé"}
+                                                message={!n.schedule[dayName].includes(3) ? "Libre  " : "Occupé"}
                                                 color={!n.schedule[dayName].includes(3) ? "success" : "danger"}
                                             /></TableCell>
                                         </TableRow>
@@ -220,7 +264,7 @@ class EnhancedTable extends React.Component {
                         </TableBody>
                     </Table>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[10, 25, 100, dataFilter.length]}
                     component="div"
                     count={this.state.classrooms.length}
                     rowsPerPage={rowsPerPage}
