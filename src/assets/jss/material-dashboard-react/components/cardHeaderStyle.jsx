@@ -17,7 +17,6 @@ const cardHeaderStyle = {
       margin: "0 15px",
       padding: "0",
       position: "relative",
-      color: "#FFFFFF"
     },
     "&:first-child": {
       borderRadius: "calc(.25rem - 1px) calc(.25rem - 1px) 0 0"
@@ -82,37 +81,31 @@ const cardHeaderStyle = {
     }
   },
   warningCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...warningCardHeader
     }
   },
   successCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...successCardHeader
     }
   },
   dangerCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...dangerCardHeader
     }
   },
   infoCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...infoCardHeader
     }
   },
   primaryCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...primaryCardHeader
     }
   },
   roseCardHeader: {
-    color: "#FFFFFF",
     "&:not($cardHeaderIcon)": {
       ...roseCardHeader
     }

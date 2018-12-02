@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import SnackbarContent from "../../components/Snackbar/SnackbarContent.jsx";
@@ -57,7 +58,7 @@ function CustomTable({...props}) {
                                         );
                                     }
                                 })}
-                                <p hidden> {first = 0}</p>
+                                <td hidden> {first = 0}</td>
                             </TableRow>
                         );
                     })}
@@ -68,7 +69,7 @@ function CustomTable({...props}) {
 }
 
 CustomTable.defaultProps = {
-    tableHeaderColor: "black"
+    tableHeaderColor: "gray"
 };
 
 CustomTable.propTypes = {
@@ -80,8 +81,7 @@ CustomTable.propTypes = {
         "success",
         "info",
         "rose",
-        "gray",
-        "black"
+        "gray"
     ]),
     tableHead: PropTypes.arrayOf(PropTypes.string),
     tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))

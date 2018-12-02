@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 // react plugin for creating charts
 // @material-ui/core
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
-import Money from "@material-ui/icons/Money";
-import Accessibility from "@material-ui/icons/Accessibility";
+//Font awesome
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faDollarSign, faUsers} from '@fortawesome/free-solid-svg-icons'
+
 // core components
 import GridItem from "../components/Grid/GridItem.jsx";
 import GridContainer from "../components/Grid/GridContainer.jsx";
@@ -38,7 +39,8 @@ class Index extends React.Component {
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
-                  <Money />
+                    <FontAwesomeIcon icon={faDollarSign} inverse/>
+
                 </CardIcon>
                 <p className={classes.cardCategory}>Coût de projet</p>
                 <h3 className={classes.cardTitle}>7,050$ CAD</h3>
@@ -54,7 +56,7 @@ class Index extends React.Component {
             <Card>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
-                  <Accessibility />
+                    <FontAwesomeIcon icon={faUsers} inverse/>
                 </CardIcon>
                 <p className={classes.cardCategory}>Nombre de personne dans l'équipe</p>
                 <h3 className={classes.cardTitle}>4</h3>

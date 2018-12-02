@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Component} from 'react';
+
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+// import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFingerprint, faIndustry} from '@fortawesome/free-solid-svg-icons'
@@ -15,117 +16,118 @@ import GridItem from "../components/Grid/GridItem";
 import CardIcon from "../components/Card/CardIcon";
 import SnackbarContent from "../components/Snackbar/SnackbarContent.jsx";
 import Table from "../components/Table/TableInfoClassSchedule.jsx";
+import axios from 'axios';
 
 
 import dashboardStyle from "../assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
-function ClassInfoPage(props) {
-    const {classes} = props;
-    //TODO appeler le back end pour récupérer les informations d'un local à partir de son numéro
-    const infoClass = {
-        numero: props.match.params.numero, batiment: "A", etage: "2e",
-        horaire: [
-            {heureDebut: "8:30:00", heureFin: "12:00:00", journee: "Monday"},
-            {heureDebut: "13:00:00", heureFin: "17:30:00", journee: "Monday"},
-            {heureDebut: "9:00:00", heureFin: "12:30:00", journee: "Tuesday"},
-            {heureDebut: "13:30:00", heureFin: "16:30:00", journee: "Tuesday"},
-            {heureDebut: "18:00:00", heureFin: "21:30:00", journee: "Tuesday"},
-            {heureDebut: "13:30:00", heureFin: "17:00:00", journee: "Thursday"},
-            {heureDebut: "18:00:00", heureFin: "21:00:00", journee: "Thursday"},
-            {heureDebut: "8:30:00", heureFin: "12:30:00", journee: "Friday"},
-            {heureDebut: "13:30:00", heureFin: "16:30:00", journee: "Friday"},
-            {heureDebut: "8:30:00", heureFin: "12:00:00", journee: "Saturday"},
-            {heureDebut: "13:00:00", heureFin: "16:00:00", journee: "Saturday"},
-        ]
-    };
-    const weekday=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const timeNow = new Date();
-    let estDispo = true;
+const style = dashboardStyle;
+export default class ClassInfoPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            numero: props.match.params.numero,
+            data: [],
+            classesSchedule: []
+        };
+    }
 
-    infoClass.horaire.filter(function(x) {
-        return x.journee === weekday[timeNow.getDay()];
-    }).forEach(function(current_value) {
-        const separateTimeDebut = current_value.heureDebut.split(":"), separateTimeFin = current_value.heureFin.split(":");
-        const heureDebut = new Date().setHours(separateTimeDebut[0], separateTimeDebut[1],separateTimeDebut[2]),
-            heureFin = new Date().setHours(separateTimeFin[0], separateTimeFin[1], separateTimeFin[2]);
-        if (heureDebut > timeNow.getTime() && heureFin < timeNow.getTime())
-            estDispo = false;
-    });
+    componentDidMount() {
+        axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero)
+            .then(response => {
+                const timeNow = new Date();
+                const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+                let valueLive = (timeNow.getTime() < new Date().setHours(12, 0, 0)) ?
+                    1 : (timeNow.getTime() < new Date().setHours(17, 0, 0)) ? 2 : 3;
+                let isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
 
-    return (
-        <Card>
-            <CardHeader color="info">
-                <h3 className={classes.cardTitleWhite}>Information sur la classe</h3>
-                <p className={classes.cardCategoryWhite}>
-                    Prendre note que les informations sur de local de l'École de Technologies Supérieures
-                    ne sont pas forcément dans cette liste et que nous ne pouvons garantir que les horaires ci-dessous
-                    sont juste à 100%.
-                </p>
-            </CardHeader>
-            <CardBody>
-                <GridContainer>
-                    <GridItem xs={12} sm={4} md={4}>
-                        <Card>
-                            <CardHeader color="primary" stats icon>
-                                <CardIcon color="primary">
-                                    <FontAwesomeIcon icon={faFingerprint}/>
-                                </CardIcon>
-                                <p className={classes.cardCategory}>Numéro de la classe</p>
-                                <h3 className={classes.cardTitle}>{infoClass.numero}</h3>
-                            </CardHeader>
-                            <CardFooter/>
-                        </Card>
-                    </GridItem>
-                    <GridItem xs={12} sm={4} md={4}>
-                        <Card>
-                            <CardHeader color="info" stats icon>
-                                <CardIcon color="info">
-                                    <FontAwesomeIcon icon={faBuilding}/>
-                                </CardIcon>
-                                <p className={classes.cardCategory}>Batiment</p>
-                                <h3 className={classes.cardTitle}>Pavillion {infoClass.batiment}</h3>
-                            </CardHeader>
-                            <CardFooter/>
-                        </Card>
-                    </GridItem>
-                    <GridItem xs={12} sm={4} md={4}>
-                        <Card>
-                            <CardHeader color="warning" stats icon>
-                                <CardIcon color="warning">
-                                    <FontAwesomeIcon icon={faIndustry}/>
-                                </CardIcon>
-                                <p className={classes.cardCategory}>Étage</p>
-                                <h3 className={classes.cardTitle}>{infoClass.etage}</h3>
-                            </CardHeader>
-                            <CardFooter/>
-                        </Card>
-                    </GridItem>
-                </GridContainer>
-                <GridContainer>
-                    <GridItem xs={12} sm={12} md={12}>
-                        <SnackbarContent
-                            message={estDispo ? "Ce local est libre en ce moment." : "Ce local est occupé en ce moment."}
-                            color={estDispo ? "success" : "danger"}
+                let classesSchedule = [["Matin"],["Après-Midi"],["Soir"]];
+                for (let j = 1; j < 4; j++) {
+                    for (let i = 1; i <= 6; i++) {
+                        classesSchedule[j-1].push(!response.data.schedule[weekday[i]].includes(j))
+                    }
+                }
+
+                this.setState({
+                    data: response.data,
+                    isEmpty: isEmpty,
+                    classesSchedule: classesSchedule
+                });
+            }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
+    render() {
+        return (
+            <Card>
+                <CardHeader color="info">
+                    <h3 className={style.cardTitleWhite}>Information sur la classe</h3>
+                    <p className={style.cardCategoryWhite}>
+                        Prendre note que les informations sur de local de l'École de Technologies Supérieures
+                        ne sont pas forcément dans cette liste et que nous ne pouvons garantir que les horaires
+                        ci-dessous
+                        sont juste à 100%.
+                    </p>
+                </CardHeader>
+                <CardBody>
+                    <GridContainer>
+                        <GridItem xs={12} sm={4} md={4}>
+                            <Card>
+                                <CardHeader color="primary" stats icon>
+                                    <CardIcon color="primary">
+                                        <FontAwesomeIcon icon={faFingerprint} inverse/>
+                                    </CardIcon>
+                                    <p className={style.cardCategory}>Numéro de la classe</p>
+                                    <h3 className={style.cardTitle}>{this.state.data.number}</h3>
+                                </CardHeader>
+                                <CardFooter/>
+                            </Card>
+                        </GridItem>
+                        <GridItem xs={12} sm={4} md={4}>
+                            <Card>
+                                <CardHeader color="info" stats icon>
+                                    <CardIcon color="info">
+                                        <FontAwesomeIcon icon={faBuilding} inverse/>
+                                    </CardIcon>
+                                    <p className={style.cardCategory}>Batiment</p>
+                                    <h3 className={style.cardTitle}>Pavillion {this.state.data.building}</h3>
+                                </CardHeader>
+                                <CardFooter/>
+                            </Card>
+                        </GridItem>
+                        <GridItem xs={12} sm={4} md={4}>
+                            <Card>
+                                <CardHeader color="warning" stats icon>
+                                    <CardIcon color="warning">
+                                        <FontAwesomeIcon icon={faIndustry} inverse/>
+                                    </CardIcon>
+                                    <p className={style.cardCategory}>Étage</p>
+                                    <h3 className={style.cardTitle}>{this.state.data.floor}e</h3>
+                                </CardHeader>
+                                <CardFooter/>
+                            </Card>
+                        </GridItem>
+                    </GridContainer>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                            <SnackbarContent
+                                message={this.state.isEmpty ? "Ce local est libre en ce moment." : "Ce local est occupé en ce moment."}
+                                color={this.state.isEmpty ? "success" : "danger"}
+                            />
+                        </GridItem>
+                    </GridContainer>
+                    <hr/>
+                    <GridContainer>
+                        <Table
+                            tableHeaderColor="gray"
+                            tableHead={["Période ⇩ \nSemaine ➩", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]}
+                            tableData={this.state.classesSchedule}
                         />
-                    </GridItem>
-                </GridContainer>
-                <hr />
-                <GridContainer>
-                    <Table
-                        tableHeaderColor="Black"
-                        tableHead={["Période ⇩ \nSemaine ➩", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]}
-                        tableData={[
-                            ["Matin", true,false,true,true,false,true],
-                            ["Après-Midi", false,false,false,false,false,true],
-                            ["Soir", true,false,true,true,false,false]
-                        ]}
-                    />
-                </GridContainer>
+                    </GridContainer>
+                </CardBody>
+            </Card>
+        )
+    };
 
-
-            </CardBody>
-        </Card>
-    );
 }
-
-export default withStyles(dashboardStyle)(ClassInfoPage);

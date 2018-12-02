@@ -13,13 +13,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
-
-let counter = 0;
-
-function createData(numero, batiment, etage, matin, apresmidi, soir) {
-    counter += 1;
-    return {id: counter, numero, batiment, etage, matin, apresmidi, soir};
-}
+import SnackbarContent from "../../components/Snackbar/SnackbarContent.jsx";
+import axios from "axios";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -46,12 +41,12 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-    {id: 'numero', disablePadding: true, label: 'Numéro'},
-    {id: 'batiment', disablePadding: true, label: 'Batiment'},
-    {id: 'etage', disablePadding: true, label: 'Étage'},
-    {id: 'matin', disablePadding: true, label: 'Matin'},
-    {id: 'apresmidi', disablePadding: true, label: 'Après-Midi'},
-    {id: 'soir', disablePadding: true, label: 'Soir'},
+    {id: 'number', disablePadding: true, label: 'Numéro'},
+    {id: 'building', disablePadding: true, label: 'Batiment'},
+    {id: 'floor', disablePadding: true, label: 'Étage'},
+    {id: 'morningSchedule', disablePadding: true, label: 'Matin'},
+    {id: 'afternoonSchedule', disablePadding: true, label: 'Après-Midi'},
+    {id: 'EveningSchedule', disablePadding: true, label: 'Soir'},
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -98,7 +93,6 @@ class EnhancedTableHead extends React.Component {
 EnhancedTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
@@ -109,27 +103,25 @@ class EnhancedTable extends React.Component {
         order: 'asc',
         orderBy: 'numero',
         selected: [],
-        // TODO : Changer ici pour integration backend
-        data: [
-            createData("A2241", "A", "2e", "Libre", "Occupé", "Libre"),
-            createData("A2546", "A", "2e", "Libre", "Libre", "Libre"),
-            createData("B4241", "B", "4e", "Occupé", "Occupé", "Occupé"),
-            createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
-            createData("E4236", "E", "4e", "Occupé", "Occupé", "Occupé"),
-            createData("A4241", "A", "3e", "Libre", "Occupé", "Libre"),
-            createData("E3241", "E", "3e", "Libre", "Libre", "Libre"),
-            createData("B3251", "B", "3e", "Occupé", "Libre", " Occupé"),
-            createData("E2141", "E", "2e", "Libre", "Occupé", "Libre"),
-            createData("A1536", "A", "1e", "Occupé", "Occupé", "Libre"),
-            createData("A4241", "A", "4e", "Libre", "Occupé", "Libre"),
-            createData("A3241", "A", "3e", "Libre", "Libre", "Occupé"),
-            createData("E2241", "E", "2e", "Occupé", "Occupé", "Occupé"),
-            createData("B1141", "B", "1e", "Libre", "Occupé", "Libre"),
-            createData("A3536", "A", "3e", "Occupé", "Occupé", "Libre")
-        ],
+        data: [],
+        classrooms: [],
         page: 0,
         rowsPerPage: 10,
         search: ''
+    };
+
+    componentDidMount() {
+        const timeNow = new Date();
+
+        axios.get('https://log515-backend.herokuapp.com/classroom?day=' + timeNow.getDate() + "&month=" + timeNow.getMonth())
+            .then(response => {
+                this.setState({
+                    data: response.data,
+                    classrooms: response.data.classrooms
+                });
+            }).catch(function (error) {
+            console.log(error);
+        })
     };
 
     handleRequestSort = (event, property) => {
@@ -155,32 +147,33 @@ class EnhancedTable extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const {data, order, orderBy, selected, rowsPerPage, page} = this.state;
-        const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-        
-        var dataFilter = this.state.data.filter(
+        const {order, orderBy, selected, rowsPerPage, page} = this.state;
+        const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.state.classrooms.length - page * rowsPerPage);
+        const timeNow = new Date();
+        const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+        let dayName = weekday[timeNow.getDay()];
+
+        var dataFilter = this.state.classrooms.filter(
             (result) => {
-                return result.numero.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+                return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             }
         );
-
         return (
             <div className={classes.tableResponsive}>
                 <TextField
-                    
+
                     placeholder="Rechercher par numéro"
                     value={this.state.search}
                     onChange={(event) => this.setState({search: event.target.value})}
                 />
             <Paper className={classes.root}>
-                <div>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
                             numSelected={selected.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={this.handleRequestSort}
-                            rowCount={data.length}
+                            rowCount={this.state.classrooms.length}
                         />
                         <TableBody>
                             {stableSort(dataFilter, getSorting(order, orderBy))
@@ -196,14 +189,26 @@ class EnhancedTable extends React.Component {
                                             selected={isSelected}
                                         >
                                             <TableCell  component="th" scope="row" padding="default">
-                                               <a href={`#/class/${n.numero}`}
-                                                  style={{color: '#00acc1', textDecoration: "underline"}}>{n.numero}</a>
+                                               <a href={`#/class/${n.number}`}
+                                                  style={{color: '#00acc1', textDecoration: "underline"}}>{n.number}</a>
                                             </TableCell>
-                                            <TableCell component="th" scope="row">{n.batiment}</TableCell>
-                                            <TableCell component="th" scope="row" >{n.etage}</TableCell>
-                                            <TableCell component="th" scope="row" >{n.matin}</TableCell>
-                                            <TableCell component="th" scope="row" >{n.apresmidi}</TableCell>
-                                            <TableCell component="th" scope="row" >{n.soir}</TableCell>
+                                            <TableCell component="th" scope="row">{n.building}</TableCell>
+                                            <TableCell component="th" scope="row" >{n.floor}</TableCell>
+                                            <TableCell component="th" scope="row" id={"morningSchedule"}>
+                                                <SnackbarContent
+                                                message={!n.schedule[dayName].includes(1) ? "Libre" : "Occupé"}
+                                                color={!n.schedule[dayName].includes(1) ? "success" : "danger"}
+                                            /></TableCell>
+                                            <TableCell component="th" scope="row" id={"afternoonSchedule"}>
+                                                <SnackbarContent
+                                                message={!n.schedule[dayName].includes(2) ? "Libre" : "Occupé"}
+                                                color={!n.schedule[dayName].includes(2) ? "success" : "danger"}
+                                            /></TableCell>
+                                            <TableCell component="th" scope="row" id={"eveningSchedule"}>
+                                                <SnackbarContent
+                                                message={!n.schedule[dayName].includes(3) ? "Libre" : "Occupé"}
+                                                color={!n.schedule[dayName].includes(3) ? "success" : "danger"}
+                                            /></TableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -214,11 +219,10 @@ class EnhancedTable extends React.Component {
                             )}
                         </TableBody>
                     </Table>
-                </div>
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={data.length}
+                    count={this.state.classrooms.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     backIconButtonProps={{

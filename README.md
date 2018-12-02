@@ -1,5 +1,5 @@
 ## Live Preview
-Le lien vers la version en ligne: https://alwaysbeshels.github.io/LOG515_FrontEnd/
+Le lien vers la version en ligne: https://alwaysbeshels.github.io/LOG5ry5_FrontEnd/
 #
 ### `npm run deploy`
 Utiliser cette commande pour pouvoir deployer l'aplication pour le live preview.
