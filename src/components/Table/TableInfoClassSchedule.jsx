@@ -51,7 +51,7 @@ function CustomTable({...props}) {
                                         return (
                                             <TableCell className={classes.tableCell} key={key}>
                                                 <SnackbarContent
-                                                    message={prop ? "Libre" : "Occupé"}
+                                                    message={prop ? "Libre  " : "Occupé"}
                                                     color={prop ? "success" : "danger"}
                                                 />
                                             </TableCell>
