@@ -35,11 +35,15 @@ export default class ClassInfoPage extends Component {
     componentDidMount() {
         axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero)
             .then(response => {
+                console.log(response.data);
                 const timeNow = new Date();
                 const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
                 let valueLive = (timeNow.getTime() < new Date().setHours(12, 0, 0)) ?
                     1 : (timeNow.getTime() < new Date().setHours(17, 0, 0)) ? 2 : 3;
-                let isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
+                let isEmpty = true;
+                if (timeNow.getDay() !== 0)
+                    isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
+
 
                 let classesSchedule = [["Matin"],["Après-Midi"],["Soir"]];
                 for (let j = 1; j < 4; j++) {
