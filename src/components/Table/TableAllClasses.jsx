@@ -17,8 +17,8 @@ import Search from "@material-ui/icons/Search";
 // core components
 import tableStyle from "../../assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import SnackbarContent from "../../components/Snackbar/SnackbarContent.jsx";
-// core components
 import Button from "../../components/CustomButtons/Button.jsx";
+import { Checkbox } from '@material-ui/core';
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -45,12 +45,12 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-    {id: 'number', disablePadding: true, label: 'Numéro'},
-    {id: 'building', disablePadding: true, label: 'Bâtiment'},
-    {id: 'floor', disablePadding: true, label: 'Étage'},
-    {id: 'morningSchedule', disablePadding: true, label: 'Matin'},
-    {id: 'afternoonSchedule', disablePadding: true, label: 'Après-Midi'},
-    {id: 'EveningSchedule', disablePadding: true, label: 'Soir'},
+    {id: 'number', disablePadding: true, label: 'Numéro', checkable: false},
+    {id: 'building', disablePadding: true, label: 'Bâtiment', checkable: false},
+    {id: 'floor', disablePadding: true, label: 'Étage', checkable: false},
+    {id: 'morningSchedule', disablePadding: true, label: 'Matin', checkable: true},
+    {id: 'afternoonSchedule', disablePadding: true, label: 'Après-Midi', checkable: true},
+    {id: 'EveningSchedule', disablePadding: true, label: 'Soir', checkable: true},
 ];
 
 const hashmapCodeMessage = {
@@ -85,6 +85,31 @@ class EnhancedTableHead extends React.Component {
             <TableHead>
                 <TableRow>
                     {rows.map(row => {
+                        var label;
+                        if(row.checkable) {
+                            label = 
+                            <div>{row.label}
+                                <Checkbox 
+                                onChange={event => this.props.handlePeriodFilters(row.label, event.target.checked)}/>
+                            </div>;
+                        }
+                        else {
+                            label = 
+                            <Tooltip
+                                title="Ascendant / Descendant"
+                                placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                                enterDelay={300}
+                            >
+                                <TableSortLabel
+                                    active={orderBy === row.id}
+                                    direction={order}
+                                    onClick={this.createSortHandler(row.id)}
+                                >
+                                    {row.label}
+                                </TableSortLabel>
+                            </Tooltip>
+                        }
+
                         return (
                             <TableCell
                                 key={row.id}
@@ -92,19 +117,7 @@ class EnhancedTableHead extends React.Component {
                                 padding={'default'}
                                 sortDirection={orderBy === row.id ? order : false}
                             >
-                                <Tooltip
-                                    title="Ascendant / Descendant"
-                                    placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                                    enterDelay={300}
-                                >
-                                    <TableSortLabel
-                                        active={orderBy === row.id}
-                                        direction={order}
-                                        onClick={this.createSortHandler(row.id)}
-                                    >
-                                        {row.label}
-                                    </TableSortLabel>
-                                </Tooltip>
+                            {label}
                             </TableCell>
                         );
                     }, this)}
@@ -131,7 +144,10 @@ class EnhancedTable extends React.Component {
         classrooms: [],
         page: 0,
         rowsPerPage: 10,
-        search: ''
+        search: '',
+        "Matin": false,
+        "Après-Midi": false,
+        "Soir": false
     };
 
     componentDidMount() {
@@ -168,6 +184,11 @@ class EnhancedTable extends React.Component {
         this.setState({rowsPerPage: event.target.value});
     };
 
+    handlePeriodFilters = (period, value) =>
+    {
+        this.setState({[period] : value});
+    };
+
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
@@ -178,8 +199,18 @@ class EnhancedTable extends React.Component {
         let dayName = (weekdays.hasOwnProperty(this.state.code)) ? this.state.code : Object.keys(weekdays)[timeNow.getDay()];
         var dataFilter = this.state.classrooms.filter(
             (result) => {
-                console.log(this.state.search);
-                return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+                var isFree = true;
+                if(this.state["Matin"]) {
+                    isFree = !result.schedule[dayName].includes(1);
+                }
+                if(isFree && this.state["Après-Midi"]) {
+                    isFree = !result.schedule[dayName].includes(2);
+                }
+                if(isFree && this.state["Soir"]) {
+                    isFree = !result.schedule[dayName].includes(3);
+                }
+
+                return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && isFree;
             }
         );
         return (
@@ -218,6 +249,7 @@ class EnhancedTable extends React.Component {
                             orderBy={orderBy}
                             onRequestSort={this.handleRequestSort}
                             rowCount={this.state.classrooms.length}
+                            handlePeriodFilters={this.handlePeriodFilters}
                         />
                         <TableBody>
                             {stableSort(dataFilter, getSorting(order, orderBy))
@@ -266,7 +298,7 @@ class EnhancedTable extends React.Component {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100, dataFilter.length]}
                     component="div"
-                    count={this.state.classrooms.length}
+                    count={dataFilter.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     backIconButtonProps={{
