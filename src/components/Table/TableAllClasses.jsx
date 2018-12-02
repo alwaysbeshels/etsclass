@@ -42,7 +42,7 @@ function getSorting(order, orderBy) {
 
 const rows = [
     {id: 'number', disablePadding: true, label: 'Numéro'},
-    {id: 'building', disablePadding: true, label: 'Batiment'},
+    {id: 'building', disablePadding: true, label: 'Bâtiment'},
     {id: 'floor', disablePadding: true, label: 'Étage'},
     {id: 'morningSchedule', disablePadding: true, label: 'Matin'},
     {id: 'afternoonSchedule', disablePadding: true, label: 'Après-Midi'},
@@ -187,11 +187,11 @@ class EnhancedTable extends React.Component {
                                             tabIndex={-1}
                                             key={n.id}
                                             selected={isSelected}
+                                            hover
+                                            onClick={event => window.location = `#/class/${n.number}`}
+                                            style={{cursor:"pointer"}}
                                         >
-                                            <TableCell  component="th" scope="row" padding="default">
-                                               <a href={`#/class/${n.number}`}
-                                                  style={{color: '#00acc1', textDecoration: "underline"}}>{n.number}</a>
-                                            </TableCell>
+                                            <TableCell  component="th" scope="row" padding="default">{n.number}</TableCell>
                                             <TableCell component="th" scope="row">{n.building}</TableCell>
                                             <TableCell component="th" scope="row" >{n.floor}</TableCell>
                                             <TableCell component="th" scope="row" id={"morningSchedule"}>

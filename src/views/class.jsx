@@ -62,7 +62,7 @@ function ClassList(props) {
                             Liste de toutes les classes disponibles <b>aujourd'hui</b>
                             <br /> Période actuelle : <b>{timeDay}</b></h3>
                         <p className={classes.cardCategoryWhite}>
-                            Prendre note que tous les locaux de l'École de Technologies Supérieures ne sont pas
+                            Prendre note que tous les locaux de l'École de Technologie Supérieure ne sont pas
                             forcément dans cette liste et que nous ne pouvons garantir que les horaires ci-dessous
                             sont juste à 100%.
                         </p>

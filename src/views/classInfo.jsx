@@ -64,7 +64,7 @@ export default class ClassInfoPage extends Component {
                 <CardHeader color="info">
                     <h3 className={style.cardTitleWhite}>Information sur la classe</h3>
                     <p className={style.cardCategoryWhite}>
-                        Prendre note que les informations sur de local de l'École de Technologies Supérieures
+                        Prendre note que les informations sur de local de l'École de Technologie Supérieure
                         ne sont pas forcément dans cette liste et que nous ne pouvons garantir que les horaires
                         ci-dessous
                         sont juste à 100%.
@@ -90,7 +90,7 @@ export default class ClassInfoPage extends Component {
                                     <CardIcon color="info">
                                         <FontAwesomeIcon icon={faBuilding} inverse/>
                                     </CardIcon>
-                                    <p className={style.cardCategory}>Batiment</p>
+                                    <p className={style.cardCategory}>Bâtiment</p>
                                     <h3 className={style.cardTitle}>Pavillion {this.state.data.building}</h3>
                                 </CardHeader>
                                 <CardFooter/>

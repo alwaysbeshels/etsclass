@@ -58,12 +58,12 @@ class Index extends React.Component {
                 <CardIcon color="info">
                     <FontAwesomeIcon icon={faUsers} inverse/>
                 </CardIcon>
-                <p className={classes.cardCategory}>Nombre de personne dans l'équipe</p>
+                <p className={classes.cardCategory}>Nombre de personnes dans l'équipe</p>
                 <h3 className={classes.cardTitle}>4</h3>
               </CardHeader>
                 <CardFooter stats>
                     <div className={classes.stats}>
-                        Nombre de personnes ayant travaillées sur le projet
+                        Nombre de personnes ayant travaillé sur le projet
                     </div>
                 </CardFooter>
             </Card>
@@ -131,7 +131,7 @@ class Index extends React.Component {
                           <div className={classes.typo}>
                               <div className={classes.note}>Shelsea Saint-Fleur</div>
                               <p>
-                                  Shelsea à 3 rôles dans notre équipe. Elle est la gestionnaire de projet, experte de
+                                  Shelsea a 3 rôles dans notre équipe. Elle est la gestionnaire de projet, experte de
                                   la matière et une de nos testeurs du projet. Elle comprend bien les besoins du projet et
                                 a permis de bien définir les objectifs de celui-ci.
                               </p>
@@ -139,24 +139,24 @@ class Index extends React.Component {
                           <div className={classes.typo}>
                               <div className={classes.note}>Mensur Rasic</div>
                               <p>
-                                  Mensur à 3 rôles dans notre équipe. Il est le gestionnaire de projet, un développeur
-                                  et un de nos testeurs. Il nous a permis de bien définir les livrables réalisables du
+                                  Mensur a 3 rôles dans notre équipe. Il est le gestionnaire de projet, un développeur
+                                  et un de nos testeurs. Il nous a permis de bien définir les livrables du
                                 projet et de les communiquer clairement à toute l'équipe.
                               </p>
                           </div>
                           <div className={classes.typo}>
                               <div className={classes.note}>Kevin Duvignau</div>
                               <p>
-                                  Kevin à 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
+                                  Kevin a 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
                                   développement, le représentant de notre équipe et un développeur. Il a été la
                                 personne ressource pour communiquer avec les parties prenantes, soit les étudiants de
-                                l'École de Technologies Supérieures.
+                                l'École de Technologie Supérieure.
                               </p>
                           </div>
                           <div className={classes.typo}>
                               <div className={classes.note}>Cristian Feisan</div>
                               <p>
-                                  Cristian à 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
+                                  Cristian a 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
                                   test, l'analyste des activités et un développeur. Il s'est assuré du bon
                                   déroulement du projet.
                               </p>

@@ -13,7 +13,7 @@ function Footer({ ...props }) {
         <p className={classes.right}>
           <span>
             &copy; {1900 + new Date().getYear()}{" "}
-              Fait par des étudiants de l'École de Technologies Supérieures
+              Réalisé par les étudiants de l'École de Technologie Supérieure
           </span>
         </p>
       </div>
