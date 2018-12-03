@@ -5,6 +5,7 @@ import FilterBAndW from "@material-ui/icons/FilterBAndW";
 import DashboardPage from "../views/index.jsx";
 import ClassesPage from "../views/class.jsx";
 import ClassInfoPage from "../views/classInfo.jsx";
+import lostRoute from "../views/404.jsx";
 
 const indexRoutes = [
     {
@@ -13,7 +14,7 @@ const indexRoutes = [
         navbarName: "Jé L'Doua Dentré",
         icon: Dashboard,
         component: DashboardPage,
-        exact: false,
+        exact: true,
         displayInMenu : true
     },
     {
@@ -31,8 +32,15 @@ const indexRoutes = [
         exact: false,
         displayInMenu: false
     },
+    {
+        path: "/lost",
+        component: lostRoute,
+        exact: false,
+        displayInMenu: false,
+    },
 
 
+    {redirect: true, path: "/*", to: "/lost"},
     {redirect: true, path: "/", to: "/index"},
     {redirect: true, path: "/class", to: "/class"},
     {redirect: true, path: "/class/:numero", to: "/class/:numero"}
