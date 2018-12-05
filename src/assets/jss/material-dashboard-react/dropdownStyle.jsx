@@ -84,7 +84,7 @@ const dropdownStyle = theme => ({
     padding: "5px 0",
     margin: "2px 0 0",
     fontSize: "14px",
-    textAlign: "left",
+    textAlign: "center",
     listStyle: "none",
     backgroundColor: "#fff",
     WebkitBackgroundClip: "padding-box",

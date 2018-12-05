@@ -18,6 +18,12 @@ const indexRoutes = [
         displayInMenu : true
     },
     {
+        path: "/",
+        component: DashboardPage,
+        exact: true,
+        displayInMenu: false
+    },
+    {
         path: "/class",
         sidebarName: "Classes",
         navbarName: "Jé L'Doua Dentré",
@@ -38,13 +44,11 @@ const indexRoutes = [
         exact: false,
         displayInMenu: false,
     },
-
-
-    {redirect: true, path: "/*", to: "/lost"},
-    {redirect: true, path: "/", to: "/index"},
+    {redirect: true, path: "/index", to: "/index"},
+    {redirect: true, exact: true, path: "/", to: "/index"},
     {redirect: true, path: "/class", to: "/class"},
-    {redirect: true, path: "/class/:numero", to: "/class/:numero"}
-   
+    {redirect: true, path: "/class/:numero", to: "/class/:numero"},
+    {redirect: true, path: "*", to: "/lost"},
 ];
 
 export default indexRoutes;
