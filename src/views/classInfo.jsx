@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 // @material-ui/core components
 // import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
@@ -32,24 +32,16 @@ export default class ClassInfoPage extends Component {
         };
     }
 
-    static getDerivedStateFromProps(nextProps, prevState){
-        if(nextProps.match.params.numero !== prevState.numero){
-            return { numero: nextProps.match.params.numero};
-        }
-        else {
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.match.params.numero !== prevState.numero) {
+            return {numero: nextProps.match.params.numero};
+        } else {
             return null;
         }
     }
 
-/*
-    componentDidUpdate() {
-        console.log("Updated!");
-        this.forceUpdate();
-    }
-*/
-
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.match.params.numero !== this.state.numero){
+        if (prevProps.match.params.numero !== this.state.numero) {
             this.setState({
                 numero: this.state.numero,
             });
@@ -62,7 +54,7 @@ export default class ClassInfoPage extends Component {
         this.reloadState();
     }
 
-    reloadState = function() {
+    reloadState = function () {
         var self = this;
         axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero.toUpperCase())
             .then(response => {
@@ -75,11 +67,10 @@ export default class ClassInfoPage extends Component {
                 if (timeNow.getDay() !== 0)
                     isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
 
-
-                let classesSchedule = [["Matin"],["Après-Midi"],["Soir"]];
+                let classesSchedule = [["Matin"], ["Après-Midi"], ["Soir"]];
                 for (let j = 1; j < 4; j++) {
                     for (let i = 1; i <= 6; i++) {
-                        classesSchedule[j-1].push(!response.data.schedule[weekday[i]].includes(j))
+                        classesSchedule[j - 1].push(!response.data.schedule[weekday[i]].includes(j))
                     }
                 }
 
@@ -96,8 +87,8 @@ export default class ClassInfoPage extends Component {
     };
 
     render() {
-        if (this.state.redirectLost){
-            return (<Redirect to='/lost' />)
+        if (this.state.redirectLost) {
+            return (<Redirect to='/lost'/>)
         } else {
             return (
                 <Card>
