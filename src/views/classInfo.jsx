@@ -32,9 +32,39 @@ export default class ClassInfoPage extends Component {
         };
     }
 
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.match.params.numero !== prevState.numero){
+            return { numero: nextProps.match.params.numero};
+        }
+        else {
+            return null;
+        }
+    }
+
+/*
+    componentDidUpdate() {
+        console.log("Updated!");
+        this.forceUpdate();
+    }
+*/
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.match.params.numero !== this.state.numero){
+            this.setState({
+                numero: this.state.numero,
+            });
+            this.reloadState();
+            this.forceUpdate();
+        }
+    }
+
     componentDidMount() {
+        this.reloadState();
+    }
+
+    reloadState = function() {
         var self = this;
-        axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero)
+        axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero.toUpperCase())
             .then(response => {
                 console.log(response.data);
                 const timeNow = new Date();
@@ -59,11 +89,11 @@ export default class ClassInfoPage extends Component {
                     classesSchedule: classesSchedule
                 });
             }).catch(function (error) {
-                self.setState({
-                    redirectLost: true
-                });
+            self.setState({
+                redirectLost: true
+            });
         })
-    }
+    };
 
     render() {
         if (this.state.redirectLost){
