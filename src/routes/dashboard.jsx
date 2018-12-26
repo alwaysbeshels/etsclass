@@ -10,15 +10,15 @@ import lostRoute from "../views/404.jsx";
 const indexRoutes = [
     {
         path: "/index",
-        sidebarName: "Dashboard",
+        sidebarName: "Class",
         navbarName: "Jé L'Doua Dentré",
-        icon: Dashboard,
-        component: DashboardPage,
+        icon: FilterBAndW,
+        component: ClassesPage,
         exact: true,
-        displayInMenu : true
+        displayInMenu : false
     },
     {
-        path: "/",
+        path: "/info",
         component: DashboardPage,
         exact: true,
         displayInMenu: false
@@ -39,12 +39,22 @@ const indexRoutes = [
         displayInMenu: false
     },
     {
+        path: "/info",
+        sidebarName: "Info",
+        navbarName: "Jé L'Doua Dentré",
+        icon: Dashboard,
+        component: DashboardPage,
+        exact: true,
+        displayInMenu : true
+    },
+    {
         path: "/lost",
         component: lostRoute,
         exact: false,
         displayInMenu: false,
     },
-    {redirect: true, path: "/index", to: "/index"},
+    {redirect: true, path: "/index", to: "/class"},
+    {redirect: true, path: "/info", to: "/info"},
     {redirect: true, exact: true, path: "/", to: "/index"},
     {redirect: true, path: "/class", to: "/class"},
     {redirect: true, path: "/class/:numero", to: "/class/:numero"},

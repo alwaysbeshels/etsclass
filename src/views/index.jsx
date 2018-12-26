@@ -59,7 +59,7 @@ class Index extends React.Component {
                     <FontAwesomeIcon icon={faUsers} inverse/>
                 </CardIcon>
                 <p className={classes.cardCategory}>Nombre de personnes dans l'équipe</p>
-                <h3 className={classes.cardTitle}>4</h3>
+                <h3 className={classes.cardTitle}>3</h3>
               </CardHeader>
                 <CardFooter stats>
                     <div className={classes.stats}>
@@ -153,15 +153,6 @@ class Index extends React.Component {
                                 l'École de Technologie Supérieure.
                               </p>
                           </div>
-                          <div className={classes.typo}>
-                              <div className={classes.note}>Cristian Feisan</div>
-                              <p>
-                                  Cristian a 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
-                                  test, l'analyste des activités et un développeur. Il s'est assuré du bon
-                                  déroulement du projet.
-                              </p>
-                          </div>
-
                       </CardBody>
                   </Card>
               </GridItem>
