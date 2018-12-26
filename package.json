@@ -2,7 +2,7 @@
   "name": "log515_frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alwaysbeshels.github.io/LOG515_FrontEnd",
+  "homepage": "https://alwaysbeshels.github.io/classets",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-brands-svg-icons": "^5.5.0",
