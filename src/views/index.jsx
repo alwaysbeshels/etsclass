@@ -20,9 +20,9 @@ import dashboardStyle from "../assets/jss/material-dashboard-react/views/dashboa
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 
-import github from "../img/logo/GitHub.png";
-import linkedin from "../img/logo/linkedin.png";
-import stackoverflow from "../img/logo/stackoverflow.png";
+import github from "../assets/img/logo/GitHub.png";
+import linkedin from "../assets/img/logo/linkedin.png";
+import stackoverflow from "../assets/img/logo/stackoverflow.png";
 
 
 class Index extends React.Component {
