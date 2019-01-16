@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "a1980d7e6d98b1bdd64d",
+    "revision": "db438afaff56aa97edaa",
     "url": "/classets/static/css/main.eeea2c41.chunk.css"
   },
   {
-    "revision": "a1980d7e6d98b1bdd64d",
-    "url": "/classets/static/js/main.a1980d7e.chunk.js"
+    "revision": "db438afaff56aa97edaa",
+    "url": "/classets/static/js/main.db438afa.chunk.js"
   },
   {
     "revision": "fc6555f8c6e2f7e90c69",
@@ -24,7 +24,11 @@ self.__precacheManifest = [
     "url": "/classets/static/media/sidebar-4.fc9cb053.jpg"
   },
   {
-    "revision": "b3419c610a6334ee9a2a46674e49b452",
+    "revision": "7bd8b34d8c52548b7c1b0fe25e03afa3",
+    "url": "/classets/static/media/class_ets.7bd8b34d.png"
+  },
+  {
+    "revision": "2a6c8baf7b99e46f7d076324d3e6986e",
     "url": "/classets/index.html"
   }
 ];
