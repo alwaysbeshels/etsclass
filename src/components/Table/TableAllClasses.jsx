@@ -149,9 +149,7 @@ class EnhancedTable extends React.Component {
     };
 
     componentDidMount() {
-        const timeNow = new Date();
-
-        axios.get('https://log515-backend.herokuapp.com/classroom?day=' + timeNow.getDate() + "&month=" + timeNow.getMonth())
+        axios.get('https://log515-backend.herokuapp.com/classroom')
             .then(response => {
                 this.setState({
                     data: response.data,
@@ -208,7 +206,7 @@ class EnhancedTable extends React.Component {
                 return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && isFree;
             }
         );
-        if (dataFilter.length <= 0) {
+        if (dataFilter.length === 0) {
             return (
                 <div className={classes.tableResponsive}>
                     <SnackbarContent
