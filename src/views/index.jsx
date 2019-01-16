@@ -161,7 +161,7 @@ class Index extends React.Component {
                                         <IconButton
                                             aria-label="Github"
                                             className={classes.tableActionButton} >
-                                            <a href={"https://www.google.ca/"} target={"_blank"}><img src={github} alt="Github" height={20} width={20}/></a>
+                                            <a href={"https://github.com/alwaysbeshels"} target={"_blank"}><img src={github} alt="Github" height={20} width={20}/></a>
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip
