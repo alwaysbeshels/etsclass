@@ -158,9 +158,7 @@ class EnhancedTable extends React.Component {
                     classrooms: response.data.classrooms,
                     code: response.data.code
                 });
-            }).catch(function (error) {
-            console.log(error);
-        })
+            }).catch(function (error) {})
     };
 
     handleRequestSort = (event, property) => {
@@ -210,106 +208,117 @@ class EnhancedTable extends React.Component {
                 return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && isFree;
             }
         );
-        return (
-            <div className={classes.tableResponsive}>
-                {(this.state.code !== null && !weekdays.hasOwnProperty(this.state.code)) &&
-                <SnackbarContent
-                    message={hashmapCodeMessage[this.state.code] + ""}
-                    color={(this.state.code === "R" || this.state.code === "C") ? "primary" : "danger"}
-                />
-                }
-                {(weekdays.hasOwnProperty(this.state.code)) &&
-                <SnackbarContent
-                    message={hashmapCodeMessage["P"] + weekdays[this.state.code]}
-                    color={"warning"}
-                />
-                }
-                <div className={classes.searchWrapper}>
-                    <TextField
-                        className={classes.margin + " " + classes.search}
-                        style={{minWidth: "20em", margin: "0.5em"}}
-                        placeholder="Rechercher par numéro"
-                        value={this.state.search}
-                        onChange={(event) => this.setState({search: event.target.value})}
+        if (dataFilter.length <= 0) {
+            return (
+                <div className={classes.tableResponsive}>
+                    <SnackbarContent
+                        message={ "Le système est actuellement indisponible. Veuillez revenir plus tard."}
+                        color={"danger"}
                     />
-                    <Button
-                        color="white" aria-label="edit"
-                        justIcon round disabled style={{marginLeft: "-1.5em"}}>
-                        <Search/>
-                    </Button>
                 </div>
-                <Paper className={classes.root} >
-                    <Table className={classes.table} aria-labelledby="tableTitle">
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={this.handleRequestSort}
-                            rowCount={this.state.classrooms.length}
-                            handlePeriodFilters={this.handlePeriodFilters}
-                        />
-                        <TableBody>
-                            {stableSort(dataFilter, getSorting(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map(n => {
-                                    const isSelected = this.isSelected(n.id);
-                                    return (
-                                        <TableRow
-                                            role="checkbox"
-                                            aria-checked={isSelected}
-                                            tabIndex={-1}
-                                            key={n.id}
-                                            selected={isSelected}
-                                            hover
-                                            onClick={event => window.location = `#/class/${n.number}`}
-                                            style={{cursor: "pointer"}}
-                                        >
-                                            <TableCell component="th" scope="row">{n.number}</TableCell>
-                                            <TableCell component="th" scope="row">{n.building}</TableCell>
-                                            <TableCell component="th" scope="row">{n.floor}</TableCell>
-                                            <TableCell component="th" scope="row" id={"morningSchedule"}>
-                                                <SnackbarContent
-                                                    message={!n.schedule[dayName].includes(1) ? "Libre  " : "Occupé"}
-                                                    color={!n.schedule[dayName].includes(1) ? "success" : "danger"}
-                                                /></TableCell>
-                                            <TableCell component="th" scope="row" id={"afternoonSchedule"}>
-                                                <SnackbarContent
-                                                    message={!n.schedule[dayName].includes(2) ? "Libre  " : "Occupé"}
-                                                    color={!n.schedule[dayName].includes(2) ? "success" : "danger"}
-                                                /></TableCell>
-                                            <TableCell component="th" scope="row" id={"eveningSchedule"}>
-                                                <SnackbarContent
-                                                    message={!n.schedule[dayName].includes(3) ? "Libre  " : "Occupé"}
-                                                    color={!n.schedule[dayName].includes(3) ? "success" : "danger"}
-                                                /></TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                            {emptyRows > 0 && (
-                                <TableRow style={{height: 49 * emptyRows}}>
-                                    <TableCell colSpan={6}/>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                    <TablePagination
-                        rowsPerPageOptions={[10, 25, 100, dataFilter.length]}
-                        component="div"
-                        count={dataFilter.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        backIconButtonProps={{
-                            'aria-label': 'Previous Page',
-                        }}
-                        nextIconButtonProps={{
-                            'aria-label': 'Next Page',
-                        }}
-                        onChangePage={this.handleChangePage}
-                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+            );
+        } else {
+            return (
+                <div className={classes.tableResponsive}>
+                    {(this.state.code !== null && !weekdays.hasOwnProperty(this.state.code)) &&
+                    <SnackbarContent
+                        message={hashmapCodeMessage[this.state.code] + ""}
+                        color={(this.state.code === "R" || this.state.code === "C") ? "primary" : "danger"}
                     />
-                </Paper>
-            </div>
-        );
+                    }
+                    {(weekdays.hasOwnProperty(this.state.code)) &&
+                    <SnackbarContent
+                        message={hashmapCodeMessage["P"] + weekdays[this.state.code]}
+                        color={"warning"}
+                    />
+                    }
+                    <div className={classes.searchWrapper}>
+                        <TextField
+                            className={classes.margin + " " + classes.search}
+                            style={{minWidth: "20em", margin: "0.5em"}}
+                            placeholder="Rechercher par numéro"
+                            value={this.state.search}
+                            onChange={(event) => this.setState({search: event.target.value})}
+                        />
+                        <Button
+                            color="white" aria-label="edit"
+                            justIcon round disabled style={{marginLeft: "-1.5em"}}>
+                            <Search/>
+                        </Button>
+                    </div>
+                    <Paper className={classes.root}>
+                        <Table className={classes.table} aria-labelledby="tableTitle">
+                            <EnhancedTableHead
+                                numSelected={selected.length}
+                                order={order}
+                                orderBy={orderBy}
+                                onRequestSort={this.handleRequestSort}
+                                rowCount={this.state.classrooms.length}
+                                handlePeriodFilters={this.handlePeriodFilters}
+                            />
+                            <TableBody>
+                                {stableSort(dataFilter, getSorting(order, orderBy))
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map(n => {
+                                        const isSelected = this.isSelected(n.id);
+                                        return (
+                                            <TableRow
+                                                role="checkbox"
+                                                aria-checked={isSelected}
+                                                tabIndex={-1}
+                                                key={n.id}
+                                                selected={isSelected}
+                                                hover
+                                                onClick={event => window.location = `#/class/${n.number}`}
+                                                style={{cursor: "pointer"}}
+                                            >
+                                                <TableCell component="th" scope="row">{n.number}</TableCell>
+                                                <TableCell component="th" scope="row">{n.building}</TableCell>
+                                                <TableCell component="th" scope="row">{n.floor}</TableCell>
+                                                <TableCell component="th" scope="row" id={"morningSchedule"}>
+                                                    <SnackbarContent
+                                                        message={!n.schedule[dayName].includes(1) ? "Libre  " : "Occupé"}
+                                                        color={!n.schedule[dayName].includes(1) ? "success" : "danger"}
+                                                    /></TableCell>
+                                                <TableCell component="th" scope="row" id={"afternoonSchedule"}>
+                                                    <SnackbarContent
+                                                        message={!n.schedule[dayName].includes(2) ? "Libre  " : "Occupé"}
+                                                        color={!n.schedule[dayName].includes(2) ? "success" : "danger"}
+                                                    /></TableCell>
+                                                <TableCell component="th" scope="row" id={"eveningSchedule"}>
+                                                    <SnackbarContent
+                                                        message={!n.schedule[dayName].includes(3) ? "Libre  " : "Occupé"}
+                                                        color={!n.schedule[dayName].includes(3) ? "success" : "danger"}
+                                                    /></TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                                {emptyRows > 0 && (
+                                    <TableRow style={{height: 49 * emptyRows}}>
+                                        <TableCell colSpan={6}/>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
+                        <TablePagination
+                            rowsPerPageOptions={[10, 25, 100, dataFilter.length]}
+                            component="div"
+                            count={dataFilter.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            backIconButtonProps={{
+                                'aria-label': 'Previous Page',
+                            }}
+                            nextIconButtonProps={{
+                                'aria-label': 'Next Page',
+                            }}
+                            onChangePage={this.handleChangePage}
+                            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                        />
+                    </Paper>
+                </div>
+            );
+        }
     }
 }
 

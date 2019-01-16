@@ -56,39 +56,55 @@ export default class ClassInfoPage extends Component {
 
     reloadState = function () {
         var self = this;
-        axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero.toUpperCase())
-            .then(response => {
-                console.log(response.data);
-                const timeNow = new Date();
-                const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-                let valueLive = (timeNow.getTime() < new Date().setHours(12, 0, 0)) ?
-                    1 : (timeNow.getTime() < new Date().setHours(17, 0, 0)) ? 2 : 3;
-                let isEmpty = true;
-                if (timeNow.getDay() !== 0)
-                    isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
+        axios.get('https://log515-backend.herokuapp.com/classroom/' + this.state.numero.toUpperCase()).then(
+            response => {
+            const timeNow = new Date();
+            const weekday = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+            let valueLive = (timeNow.getTime() < new Date().setHours(12, 0, 0)) ?
+                1 : (timeNow.getTime() < new Date().setHours(17, 0, 0)) ? 2 : 3;
+            let isEmpty = true;
+            if (timeNow.getDay() !== 0)
+                isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
 
-                let classesSchedule = [["Matin"], ["Après-Midi"], ["Soir"]];
-                for (let j = 1; j < 4; j++) {
-                    for (let i = 1; i <= 6; i++) {
-                        classesSchedule[j - 1].push(!response.data.schedule[weekday[i]].includes(j))
-                    }
+            let classesSchedule = [["Matin"], ["Après-Midi"], ["Soir"]];
+            for (let j = 1; j < 4; j++) {
+                for (let i = 1; i <= 6; i++) {
+                    classesSchedule[j - 1].push(!response.data.schedule[weekday[i]].includes(j))
                 }
+            }
 
-                this.setState({
-                    data: response.data,
-                    isEmpty: isEmpty,
-                    classesSchedule: classesSchedule
-                });
-            }).catch(function (error) {
-            self.setState({
-                redirectLost: true
+            this.setState({
+                data: response.data,
+                isEmpty: isEmpty,
+                classesSchedule: classesSchedule
             });
+        }).catch(function (error) {
+            if (JSON.stringify(error.message).includes("Network Error")) {
+                self.setState({
+                    redirectLost: false,
+                    error: true
+                });
+            } else {
+                self.setState({
+                    redirectLost: true,
+                    error: false
+                });
+            }
         })
     };
 
     render() {
         if (this.state.redirectLost) {
             return (<Redirect to='/lost'/>)
+        } else if (this.state.error) {
+            return (
+                <div className={style.tableResponsive}>
+                    <SnackbarContent
+                        message={"Le système est actuellement indisponible. Veuillez revenir plus tard."}
+                        color={"danger"}
+                    />
+                </div>
+            );
         } else {
             return (
                 <Card>
