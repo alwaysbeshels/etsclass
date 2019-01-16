@@ -122,7 +122,7 @@ class Index extends React.Component {
                     <GridItem xs={12} sm={12} md={12}>
                         <Card chart>
                             <CardHeader color="warning">
-                                <h3 className={classes.cardTitleWhite}>Présentation du Projet : Jé l'Doua Dentré</h3>
+                                <h3 className={classes.cardTitleWhite}>Présentation du Projet : ClassÉTS</h3>
                             </CardHeader>
                             <CardBody>
                                 <div>

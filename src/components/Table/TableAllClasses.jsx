@@ -156,7 +156,11 @@ class EnhancedTable extends React.Component {
                     classrooms: response.data.classrooms,
                     code: response.data.code
                 });
-            }).catch(function (error) {})
+            }).catch(function (error) {
+            this.setState({
+                error:true
+            });
+        })
     };
 
     handleRequestSort = (event, property) => {
@@ -203,10 +207,12 @@ class EnhancedTable extends React.Component {
                     isFree = !result.schedule[dayName].includes(3);
                 }
 
-                return result.number.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 && isFree;
+                let number = result.number.toLowerCase();
+                return (number.indexOf(this.state.search.toLowerCase()) !== -1 || number.replace('-','')
+                    .indexOf(this.state.search.toLowerCase()) !== -1) && isFree;
             }
         );
-        if (dataFilter.length === 0) {
+        if (dataFilter.length === 0 && this.state.error) {
             return (
                 <div className={classes.tableResponsive}>
                     <SnackbarContent
