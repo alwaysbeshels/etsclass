@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 //Font awesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faDollarSign, faUsers} from '@fortawesome/free-solid-svg-icons'
+import {faUsers} from '@fortawesome/free-solid-svg-icons'
+import {faGithub} from '@fortawesome/free-brands-svg-icons'
 
 // core components
 import GridItem from "../components/Grid/GridItem.jsx";
@@ -39,6 +40,11 @@ class Index extends React.Component {
 
     render() {
         const {classes} = this.props;
+        var divStyle = {
+            color: 'black',
+            textDecorationLine: 'underline',
+        };
+
         return (
             <div>
                 <GridContainer>
@@ -46,15 +52,19 @@ class Index extends React.Component {
                         <Card>
                             <CardHeader color="success" stats icon>
                                 <CardIcon color="success">
-                                    <FontAwesomeIcon icon={faDollarSign} inverse/>
-
+                                    <FontAwesomeIcon icon={faGithub} inverse/>
                                 </CardIcon>
-                                <p className={classes.cardCategory}>Coût de projet</p>
-                                <h3 className={classes.cardTitle}>7,050$ CAD</h3>
+                                <br/>
+
+                                <h4 className={classes.cardTitle}>
+                                    <a  style={divStyle} href={"https://github.com/alwaysbeshels/classets"} >Front-end du projet</a>
+                                    <br/>
+                                    {/*<a style={divStyle} href={"https://github.com/alwaysbeshels/classets_backend"} >Back-end du projet</a>*/}
+                                </h4>
                             </CardHeader>
                             <CardFooter stats>
                                 <div className={classes.stats}>
-                                    Estimé durant le cadre du cours de LOG515
+                                    Si vous trouvez un bug, SVP les inscrires dans la table Issues du lien ci-dessus.
                                 </div>
                             </CardFooter>
                         </Card>
