@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "2ce070ed22e06d804fcc",
+    "revision": "724da6e371940f34bb01",
     "url": "/classets/static/css/main.0b749c67.chunk.css"
   },
   {
-    "revision": "2ce070ed22e06d804fcc",
-    "url": "/classets/static/js/main.2ce070ed.chunk.js"
+    "revision": "724da6e371940f34bb01",
+    "url": "/classets/static/js/main.724da6e3.chunk.js"
   },
   {
     "revision": "f65358ee20dae21ad9cb",
     "url": "/classets/static/js/runtime~main.f65358ee.js"
   },
   {
-    "revision": "516aa7861faad8b06c11",
+    "revision": "fdf1917168cc199eea2e",
     "url": "/classets/static/css/2.e13c065f.chunk.css"
   },
   {
-    "revision": "516aa7861faad8b06c11",
-    "url": "/classets/static/js/2.516aa786.chunk.js"
+    "revision": "fdf1917168cc199eea2e",
+    "url": "/classets/static/js/2.fdf19171.chunk.js"
   },
   {
     "revision": "fc9cb0538eb5a4dfd6fbb1bf6dd6189b",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/classets/static/media/class_ets.7bd8b34d.png"
   },
   {
-    "revision": "74890f5a3e946ac841e7d1d07f82ec97",
+    "revision": "2f8ffb0b44168c5f575ed1cbca292f4f",
     "url": "/classets/index.html"
   }
 ];
