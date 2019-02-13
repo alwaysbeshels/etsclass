@@ -230,7 +230,7 @@ class EnhancedTable extends React.Component {
                         color={(this.state.code === "R" || this.state.code === "C") ? "primary" : "danger"}
                     />
                     }
-                    {(weekdays.hasOwnProperty(this.state.code)) &&
+                    {(weekdays.hasOwnProperty(this.state.code) && this.state.code === "P") &&
                     <SnackbarContent
                         message={hashmapCodeMessage["P"] + weekdays[this.state.code]}
                         color={"warning"}
