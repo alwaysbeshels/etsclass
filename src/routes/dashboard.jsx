@@ -11,7 +11,7 @@ const indexRoutes = [
     {
         path: "/index",
         sidebarName: "Class",
-        navbarName: "Jé L'Doua Dentré",
+        navbarName: "ClassETS",
         icon: FilterBAndW,
         component: ClassesPage,
         exact: true,
@@ -26,7 +26,7 @@ const indexRoutes = [
     {
         path: "/class",
         sidebarName: "Classes",
-        navbarName: "Jé L'Doua Dentré",
+        navbarName: "ClassETS",
         icon: FilterBAndW,
         component: ClassesPage,
         exact: true,
@@ -41,7 +41,7 @@ const indexRoutes = [
     {
         path: "/info",
         sidebarName: "Info",
-        navbarName: "Jé L'Doua Dentré",
+        navbarName: "ClassETS",
         icon: Dashboard,
         component: DashboardPage,
         exact: true,
