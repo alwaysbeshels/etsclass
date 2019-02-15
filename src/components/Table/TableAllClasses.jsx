@@ -45,12 +45,12 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-    {id: 'number',  label: 'Numéro', checkable: false},
-    {id: 'building',  label: 'Bâtiment', checkable: false},
-    {id: 'floor',  label: 'Étage', checkable: false},
-    {id: 'morningSchedule',  label: 'Matin', checkable: true},
-    {id: 'afternoonSchedule',  label: 'Après-Midi', checkable: true},
-    {id: 'EveningSchedule',  label: 'Soir', checkable: true},
+    {id: 'number', label: 'Numéro', checkable: false},
+    {id: 'building', label: 'Bâtiment', checkable: false},
+    {id: 'floor', label: 'Étage', checkable: false},
+    {id: 'morningSchedule', label: 'Matin', checkable: true},
+    {id: 'afternoonSchedule', label: 'Après-Midi', checkable: true},
+    {id: 'EveningSchedule', label: 'Soir', checkable: true},
 ];
 
 const hashmapCodeMessage = {
@@ -158,7 +158,7 @@ class EnhancedTable extends React.Component {
                 });
             }).catch(function (error) {
             this.setState({
-                error:true
+                error: true
             });
         })
     };
@@ -208,7 +208,7 @@ class EnhancedTable extends React.Component {
                 }
 
                 let number = result.number.toLowerCase();
-                return (number.indexOf(this.state.search.toLowerCase()) !== -1 || number.replace('-','')
+                return (number.indexOf(this.state.search.toLowerCase()) !== -1 || number.replace('-', '')
                     .indexOf(this.state.search.toLowerCase()) !== -1) && isFree;
             }
         );
@@ -216,12 +216,12 @@ class EnhancedTable extends React.Component {
             return (
                 <div className={classes.tableResponsive}>
                     <SnackbarContent
-                        message={ "Le système est actuellement indisponible. Veuillez revenir plus tard."}
+                        message={"Le système est actuellement indisponible. Veuillez revenir plus tard."}
                         color={"danger"}
                     />
                 </div>
             );
-        } else {
+        } else if (this.state.classrooms !== null && this.state.classrooms.length > 0) {
             return (
                 <div className={classes.tableResponsive}>
                     {(this.state.code !== null && !weekdays.hasOwnProperty(this.state.code)) &&
@@ -321,6 +321,10 @@ class EnhancedTable extends React.Component {
                         />
                     </Paper>
                 </div>
+            );
+        } else {
+            return (
+                <div></div>
             );
         }
     }

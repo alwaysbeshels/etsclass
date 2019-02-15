@@ -105,7 +105,7 @@ export default class ClassInfoPage extends Component {
                     />
                 </div>
             );
-        } else {
+        } else if (this.state.isEmpty) {
             return (
                 <Card>
                     <CardHeader color="info">
@@ -175,6 +175,10 @@ export default class ClassInfoPage extends Component {
                     </CardBody>
                 </Card>
             )
+        } else {
+            return (
+                <div className={style.tableResponsive}> </div>
+            );
         }
     };
 
