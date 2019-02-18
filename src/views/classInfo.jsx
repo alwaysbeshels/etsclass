@@ -105,8 +105,9 @@ export default class ClassInfoPage extends Component {
                     />
                 </div>
             );
-        } else if (this.state.isEmpty) {
+        } else if (this.state.data.schedule !== null) {
             return (
+
                 <Card>
                     <CardHeader color="info">
                         <h3 className={style.cardTitleWhite}>Information sur la classe</h3>
@@ -177,7 +178,9 @@ export default class ClassInfoPage extends Component {
             )
         } else {
             return (
-                <div className={style.tableResponsive}> </div>
+                <div className={style.tableResponsive}>
+                </div>
+
             );
         }
     };
