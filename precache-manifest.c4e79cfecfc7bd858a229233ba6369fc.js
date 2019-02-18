@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "8256a483b0cc38a2c8ab",
+    "revision": "55ab1e48a3c5479a5086",
     "url": "/classets/static/css/main.0b749c67.chunk.css"
   },
   {
-    "revision": "8256a483b0cc38a2c8ab",
-    "url": "/classets/static/js/main.8256a483.chunk.js"
+    "revision": "55ab1e48a3c5479a5086",
+    "url": "/classets/static/js/main.55ab1e48.chunk.js"
   },
   {
     "revision": "f65358ee20dae21ad9cb",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/classets/static/media/class_ets.7bd8b34d.png"
   },
   {
-    "revision": "8ef044573fb673ed58780ab230da1d35",
+    "revision": "9812a2ee0f27824b7d27645303d4a67b",
     "url": "/classets/index.html"
   }
 ];
