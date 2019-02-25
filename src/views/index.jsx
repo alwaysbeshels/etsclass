@@ -142,6 +142,19 @@ class Index extends React.Component {
                                         sur un local spécifique, comme leur plage horaire par exemple, mais aussi
                                         d’obtenir une liste de tous les locaux libres dans un bâtiment ou sur un étage.
                                     </p>
+                                    <h3>Comment ça marche ?</h3>
+                                    <p>
+                                        À partir des <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a> de listes des horaires de cours disponibles sur le site web de
+                                        l’École de Technologie Supérieure, un script passe à travers des <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a> et en extrait les horaies de cours avec leurs numéros de classe associés. Un autre
+                                        script lit le <a style={divStyle} href={"https://www.etsmtl.ca/docs/Etudes/calendrier-universitaire/Documents/calendrier-seance-" + ((new Date()).getFullYear())} >PDFs contenant le calendrier</a> pour en extraire les jours fériés, les congés et les permutations d'horaires.
+
+                                        <h4>Informations Importantes</h4>
+                                        <p>Puisque nous avons développé cette application durant la session de l'automne 2018,
+                                        nous avons seulement les classes qui ont été dans au moins un des <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a> disponibles depuis cette session. Donc, il se peut qu'il manque des numéros de local dans
+                                            la liste. Par contre, plus les sessions avancent, plus notre liste augmentera avec les nouveaux <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a>.
+
+                                        </p>
+                                    </p>
                                 </div>
                             </CardBody>
                         </Card>
