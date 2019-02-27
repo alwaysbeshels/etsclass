@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 // react plugin for creating charts
-// @material-ui/core
 import withStyles from "@material-ui/core/styles/withStyles";
 //Font awesome
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
