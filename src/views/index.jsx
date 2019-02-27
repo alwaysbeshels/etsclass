@@ -152,7 +152,6 @@ class Index extends React.Component {
                                         <p>Puisque nous avons développé cette application durant la session de l'automne 2018,
                                         nous avons seulement les classes qui ont été dans au moins un des <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a> disponibles depuis cette session. Donc, il se peut qu'il manque des numéros de local dans
                                             la liste. Par contre, plus les sessions avancent, plus notre liste augmentera avec les nouveaux <a style={divStyle} href={"https://www.etsmtl.ca/Etudiants/Horaire-cours"} >PDFs</a>.
-
                                         </p>
                                     </p>
                                 </div>
