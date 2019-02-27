@@ -57,7 +57,7 @@ class Index extends React.Component {
                                 <br/>
 
                                 <h4 className={classes.cardTitle}>
-                                    <a  style={divStyle} href={"https://github.com/alwaysbeshels/classets"} >Front-end du projet</a>
+                                    <a  style={divStyle} href={"https://github.com/alwaysbeshels/etsclass"} >Front-end du projet</a>
                                     <br/>
                                     {/*<a style={divStyle} href={"https://github.com/alwaysbeshels/classets_backend"} >Back-end du projet</a>*/}
                                 </h4>

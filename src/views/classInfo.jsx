@@ -28,7 +28,8 @@ export default class ClassInfoPage extends Component {
             numero: props.match.params.numero,
             data: [],
             classesSchedule: [],
-            redirectLost: false
+            redirectLost: false,
+            okToLoad: false
         };
     }
 
@@ -76,7 +77,8 @@ export default class ClassInfoPage extends Component {
             this.setState({
                 data: response.data,
                 isEmpty: isEmpty,
-                classesSchedule: classesSchedule
+                classesSchedule: classesSchedule,
+                okToLoad: true
             });
         }).catch(function (error) {
             if (JSON.stringify(error.message).includes("Network Error")) {
@@ -105,7 +107,7 @@ export default class ClassInfoPage extends Component {
                     />
                 </div>
             );
-        } else if (this.state.data.schedule !== null) {
+        } else if (this.state.data.schedule !== null && this.state.okToLoad) {
             return (
 
                 <Card>
