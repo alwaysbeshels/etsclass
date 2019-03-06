@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "0187676387b4b0a54787",
-    "url": "/etsclass/static/css/main.0b749c67.chunk.css"
+    "revision": "f81ec080f29d74736c21",
+    "url": "/etsclass/static/css/main.bd7fbc06.chunk.css"
   },
   {
-    "revision": "0187676387b4b0a54787",
-    "url": "/etsclass/static/js/main.01876763.chunk.js"
+    "revision": "f81ec080f29d74736c21",
+    "url": "/etsclass/static/js/main.f81ec080.chunk.js"
   },
   {
     "revision": "4228d08968387bb34bad",
     "url": "/etsclass/static/js/runtime~main.4228d089.js"
   },
   {
-    "revision": "966cd3ce0bf920daa0d0",
-    "url": "/etsclass/static/css/2.e13c065f.chunk.css"
+    "revision": "99b72b3d8dae3c70aa16",
+    "url": "/etsclass/static/css/2.7a2fb2f0.chunk.css"
   },
   {
-    "revision": "966cd3ce0bf920daa0d0",
-    "url": "/etsclass/static/js/2.966cd3ce.chunk.js"
+    "revision": "99b72b3d8dae3c70aa16",
+    "url": "/etsclass/static/js/2.99b72b3d.chunk.js"
   },
   {
     "revision": "fc9cb0538eb5a4dfd6fbb1bf6dd6189b",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/etsclass/static/media/class_ets.7bd8b34d.png"
   },
   {
-    "revision": "d87b8c17bc1f379ca848e30dd59e4d39",
+    "revision": "15b6650b8f26f7ee8a7240fb0754cb0b",
     "url": "/etsclass/index.html"
   }
 ];
