@@ -66,6 +66,11 @@ function ClassList(props) {
                             forcément dans cette liste et que nous ne pouvons garantir que les horaires ci-dessous
                             sont juste à 100%.
                         </p>
+
+                        <p>
+                            Pour obtenir tous les <u><b>locaux libres</b></u> dans une ou plusieurs périodes précises de la journée,
+                            simplement <u><b>cocher, dans l'entête du tableau</b></u>, la ou les périodes souhaitées.
+                        </p>
                     </CardHeader>
                     <CardBody>
                         <GridContainer>

@@ -1,6 +1,4 @@
 ## Live Preview
-Le lien vers la version staging en ligne: https://alwaysbeshels.github.io/etsclass/
-
 Le lien vers la version publiée en ligne: www.etsclass.xyz
 
 ## Resumé
