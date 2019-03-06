@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "f81ec080f29d74736c21",
+    "revision": "0fd797e2667082c6e7df",
     "url": "/etsclass/static/css/main.bd7fbc06.chunk.css"
   },
   {
-    "revision": "f81ec080f29d74736c21",
-    "url": "/etsclass/static/js/main.f81ec080.chunk.js"
+    "revision": "0fd797e2667082c6e7df",
+    "url": "/etsclass/static/js/main.0fd797e2.chunk.js"
   },
   {
     "revision": "4228d08968387bb34bad",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/etsclass/static/media/class_ets.7bd8b34d.png"
   },
   {
-    "revision": "15b6650b8f26f7ee8a7240fb0754cb0b",
+    "revision": "87168f7420bad064a5b563d8a2f3a572",
     "url": "/etsclass/index.html"
   }
 ];
