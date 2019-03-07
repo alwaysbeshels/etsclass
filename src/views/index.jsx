@@ -172,7 +172,7 @@ class Index extends React.Component {
                                         Elle a le sens de la planification et de l'organisation.
                                         Passioner par l'intelligence artificielle et le big-data,
                                         elle maîtrise le monde entier. Lorsqu'elle ne programme pas,
-                                        elle est train de chercher pendant des jours le meilleur angle pour ces photos.
+                                        elle est train de chercher pendant des jours le meilleur angle pour ses photos.
                                     </p>
                                     <Tooltip
                                         id="tooltip-top-start"
@@ -211,10 +211,12 @@ class Index extends React.Component {
                                 <div className={classes.typo}>
                                     <div className={classes.note}>Mensur<br/>Rasic</div>
                                     <p>
-                                        Mensur a 3 rôles dans notre équipe. Il est le gestionnaire de projet, un
-                                        développeur
-                                        et un de nos testeurs. Il nous a permis de bien définir les livrables du
-                                        projet et de les communiquer clairement à toute l'équipe.
+                                        Mensur est vif et ambitieux, travaillant plusieurs centaines d'heures par jour,
+                                        la légende dit qu'il n'y a pas beaucoup de personnes qui arrive à le voir.
+                                        En plus d'avoir le sens de l'organisation et du leadership,
+                                        ne remettez pas en question sa capacité d'analyser des problèmes très complexes.
+                                        Lorsqu'il n'est pas en train de travailler ou d'étudier,
+                                        il passe des heures à programmer comme un acharné.
                                     </p>
 
                                     <Tooltip
@@ -254,11 +256,11 @@ class Index extends React.Component {
                                 <div className={classes.typo}>
                                     <div className={classes.note}>Kevin<br/>Duvignau</div>
                                     <p>
-                                        Kevin a 3 rôles dans notre équipe. Il est le chef de projet de l'équipe de
-                                        développement, le représentant de notre équipe et un développeur. Il a été la
-                                        personne ressource pour communiquer avec les parties prenantes, soit les
-                                        étudiants de
-                                        l'École de Technologie Supérieure.
+                                        Fils de Christophe Colomb, il n'a pas peur des nouvelles aventures.
+                                        Kevin est une personne très doué dans son domaine.
+                                        Ce savant barbu trouve des solutions aux problèmes en une fraction de seconde.
+                                        Lors qu'il n'est pas en train de développer le jeu du siècle,
+                                        il fait le tour du monde sur son voilier.
                                     </p>
 
                                     <Tooltip

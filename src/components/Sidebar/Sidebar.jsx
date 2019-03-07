@@ -68,7 +68,7 @@ const Sidebar = ({ ...props }) => {
     </List>
   );
   var brand = (
-    <div className={classes.logo}>
+    <div className={classes.logo} style={{backgroundColor:"#C1C1C1"}}>
       <a href={'#/index'} className={classes.logoLink}>
         <div className={classes.logoImage}>
           <img src={logo} alt="logo" className={classes.img} />
@@ -115,11 +115,11 @@ const Sidebar = ({ ...props }) => {
           }}
         >
           {brand}
-          <div className={classes.sidebarWrapper}>{links}</div>
+          <div className={classes.sidebarWrapper} >{links}</div>
           {image !== undefined ? (
             <div
               className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
+              style={{ backgroundImage: "url(" + image + ")"}}
             />
           ) : null}
         </Drawer>
