@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ReactGA from 'react-ga';
 
 class App extends Component {
   render() {
@@ -27,5 +28,12 @@ class App extends Component {
     );
   }
 }
+
+function initializeReactGA() {
+    ReactGA.initialize('');
+    ReactGA.pageview('/homepage');
+}
+
+initializeReactGA();
 
 export default App;

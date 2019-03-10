@@ -16,6 +16,7 @@
     "moment": "^2.22.2",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
+    "react-ga": "^2.5.7",
     "react-redux": "^5.1.1",
     "react-scripts": "^2.1.5",
     "react-table": "^6.8.6",
