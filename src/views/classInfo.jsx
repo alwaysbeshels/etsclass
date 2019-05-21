@@ -64,18 +64,20 @@ export default class ClassInfoPage extends Component {
             let valueLive = (timeNow.getTime() < new Date().setHours(12, 0, 0)) ?
                 1 : (timeNow.getTime() < new Date().setHours(17, 0, 0)) ? 2 : 3;
             let isEmpty = true;
-            if (timeNow.getDay() !== 0)
-                isEmpty = !response.data.schedule[weekday[timeNow.getDay()]].includes(valueLive);
+            if (timeNow.getDay() !== 0 && response.data.code === undefined)
+                isEmpty = !response.data.classrooms.schedule[weekday[timeNow.getDay()]].includes(valueLive);
+            else if(response.data.code)
+                isEmpty = !response.data.classrooms.schedule[response.data.code].includes(valueLive);
 
             let classesSchedule = [["Matin"], ["Après-Midi"], ["Soir"]];
             for (let j = 1; j < 4; j++) {
                 for (let i = 1; i <= 6; i++) {
-                    classesSchedule[j - 1].push(!response.data.schedule[weekday[i]].includes(j))
+                    classesSchedule[j - 1].push(!response.data.classrooms.schedule[weekday[i]].includes(j))
                 }
             }
 
             this.setState({
-                data: response.data,
+                data: response.data.classrooms,
                 isEmpty: isEmpty,
                 classesSchedule: classesSchedule,
                 okToLoad: true

@@ -154,7 +154,6 @@ class EnhancedTable extends React.Component {
     componentDidMount() {
         const timeNow = new Date();
         let url  = 'https://log515-backend.herokuapp.com/classroom?day=' + timeNow.getDate()  + '&month=' + (timeNow.getMonth()+1);
-        // let dayName = (weekdays.hasOwnProperty(this.state.code)) ? this.state.code : Object.keys(weekdays)[timeNow.getDay()];
         axios.get(url)
             .then(response => {
                 this.setState({
@@ -216,6 +215,8 @@ class EnhancedTable extends React.Component {
                     .indexOf(this.state.search.toLowerCase()) !== -1) && isFree;
             }
         );
+        var exists = dataFilter.some(n => n.schedule[dayName] !== undefined);
+
         if (dataFilter.length === 0 && this.state.error && this.state.classrooms === null) {
             return (
                 <div className={classes.tableResponsive}>
@@ -226,7 +227,7 @@ class EnhancedTable extends React.Component {
                 </div>
             );
         } else if (dataFilter.length > 0 && !this.state.error && this.state.classrooms !== null
-            && this.state.classrooms.length > 0) {
+            && this.state.classrooms.length > 0 && exists) {
             return (
                 <div className={classes.tableResponsive}>
                     {(this.state.code !== null && !weekdays.hasOwnProperty(this.state.code)) &&
@@ -235,7 +236,7 @@ class EnhancedTable extends React.Component {
                         color={(this.state.code === "R" || this.state.code === "C") ? "primary" : "danger"}
                     />
                     }
-                    {(weekdays.hasOwnProperty(this.state.code) && this.state.code === "P") &&
+                    {(weekdays.hasOwnProperty(this.state.code) && this.state.code !== Object.keys(weekdays)[timeNow.getDay()]) &&
                     <SnackbarContent
                         message={hashmapCodeMessage["P"] + weekdays[this.state.code]}
                         color={"warning"}
